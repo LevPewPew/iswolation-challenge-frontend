@@ -1,0 +1,44 @@
+// color pallete for the site
+
+// don't give color names specifics such as "somethingPink" or "coolNameBlue", because then if we decide to change color pallete at all in the future, we can just change the hex code of the color, but not worry about all of that color variable not relating to the actual hexcode
+
+$swolePatrolLight: #36413E;
+$swolePatrolLight: #414846;
+$swolePatrol: #1D201F;
+$swolePatrolDark: #091410;
+$gainsvilleFurnitureLight: #F3F6F6;
+$gainsvilleFurniture: #D1DEDE;
+$gainsvilleFurnitureDark: #6D9696;
+$mondayChestDayLight: #EABCB7;
+$mondayChestDay: #C58882;
+$mondayChestDayDark: #843D36;
+$broScienceLight: #FFC8C5;
+$broScience: #DF928E;
+$broScienceDark: #993A35;
+$doYouEvenLiftLight: #FFF0D9;
+$doYouEvenLift: #EAD2AC;
+$doYouEvenLiftDark: #C6A776;
+$shredded: #889696;
+$absoluteUnit: #5F7470;
+$brickPoopHouse: #36413E;
+
+// TODO, figure out how to do a loop through these
+:export {
+  swolePatrolLight: $swolePatrolLight;
+  swolePatrol: $swolePatrol;
+  swolePatrolDark: $swolePatrolDark;
+  gainsvilleFurnitureLight: $gainsvilleFurnitureLight;
+  gainsvilleFurniture: $gainsvilleFurniture;
+  gainsvilleFurnitureDark: $gainsvilleFurnitureDark;
+  mondayChestDayLight: $mondayChestDayLight;
+  mondayChestDay: $mondayChestDay;
+  mondayChestDayDark: $mondayChestDayDark;
+  broScienceLight: $broScienceLight;
+  broScience: $broScience;
+  broScienceDark: $broScienceDark;
+  doYouEvenLiftLight: $doYouEvenLiftLight;
+  doYouEvenLift: $doYouEvenLift;
+  doYouEvenLiftDark: $doYouEvenLiftDark;
+  shredded: $shredded;
+  absoluteUnit: $absoluteUnit;
+}

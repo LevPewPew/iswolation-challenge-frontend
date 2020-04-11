@@ -1,0 +1,32 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: $headings;
+  color: $gainsvilleFurniture;
+}
+
+.h1-plus {
+  font-size: 48px;
+}
+
+p,
+li,
+span {
+  margin: 0;
+  font-family: $general;
+  color: $gainsvilleFurniture;
+}
+
+a {
+  text-decoration: none;
+  color: $gainsvilleFurniture;
+}
+
+a:visited {
+  text-decoration: none;
+  color: $gainsvilleFurniture;
+}

@@ -1,0 +1,44 @@
+// partials
+@import '../styles/colors';
+@import '../styles/fonts';
+
+.App {
+  width: 1400px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  // categories
+  @import '../styles/buttons';
+  @import '../styles/inputs';
+  @import '../styles/texts';
+
+  // components
+  @import '../components/Banner/Banner';
+  @import '../components/BicepParticle/BicepParticle';
+  @import '../components/Footer/Footer';
+  @import '../components/NewGameForm/NewGameForm';
+  @import '../components/ExerciseCounter/ExerciseCounter';
+  @import '../components/PlayerCard/PlayerCard';
+  @import '../components/PlayerRow/PlayerRow';
+  @import '../components/PlusRepBtn/PlusRepBtn';
+  @import '../components/ProgressBar/ProgressBar';
+  @import '../components/ProgressCount/ProgressCount';
+  
+  // components > forms
+  @import '../components/forms/DecrementBtn/DecrementBtn';
+  @import '../components/forms/IncrementBtn/IncrementBtn';
+  @import '../components/forms/SubmitBtn/SubmitBtn';
+  @import '../components/forms/TextInput/TextInput';
+
+  // pages
+  @import '../pages/GamePage/GamePage';
+  @import '../pages/MainPage/MainPage';
+
+  // misc globals
+  [class*="Page"] {
+    padding: 40px;
+    flex-grow: 2;
+  }
+}

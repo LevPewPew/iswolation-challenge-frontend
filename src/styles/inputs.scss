@@ -1,0 +1,8 @@
+input {
+  box-sizing: border-box;
+
+  &:focus {
+    outline: 0;
+    border: 3px solid $doYouEvenLiftDark;
+  }
+}

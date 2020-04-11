@@ -1,0 +1,26 @@
+.IncDecBtn {
+  position: relative;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: $swolePatrolDark;
+  font-size: 1.25em;
+
+  &:active {
+    -webkit-box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+
+    .fa-plus {
+      transform: scale(0.9);
+    }
+
+    .fa-minus {
+      transform: scale(0.9);
+    }
+  }
+
+  &:disabled {
+    background: $swolePatrolLight;
+  }
+}

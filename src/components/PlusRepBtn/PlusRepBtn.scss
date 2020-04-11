@@ -1,0 +1,16 @@
+.PlusRepBtn {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: $broScienceDark;
+  font-size: 2em;
+
+  &:active {
+    .fa-plus {
+      transform: scale(0.9);
+    }
+  }
+}

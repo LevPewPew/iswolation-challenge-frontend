@@ -1,0 +1,11 @@
+.ExerciseCounter {
+  display: flex;
+
+  .PlusRepBtn {
+    margin: 0 5px;
+  }
+
+  .ProgressBar {
+    flex-grow: 1;
+  }
+}

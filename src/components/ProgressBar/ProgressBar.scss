@@ -1,0 +1,23 @@
+.ProgressBar {
+  position: relative;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  background: $shredded;
+  font-family: $general;
+  overflow-x: visible;
+  white-space: nowrap;
+
+  .fill {
+    box-sizing: border-box;
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    background: $absoluteUnit;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

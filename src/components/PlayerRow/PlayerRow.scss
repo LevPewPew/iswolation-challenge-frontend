@@ -1,0 +1,18 @@
+.PlayerRow {
+  padding: 5px;
+  border: 5px solid $gainsvilleFurnitureDark;
+  border-radius: 10px;
+  background: $gainsvilleFurniture;
+  display: flex;
+  
+  .exercise-counters {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .ExerciseCounter {
+    margin: 5px 3px 5px 0;
+  }
+}

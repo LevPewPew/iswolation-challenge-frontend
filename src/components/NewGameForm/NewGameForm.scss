@@ -1,0 +1,32 @@
+.NewGameForm {
+  width: 38.2%;
+  display: flex;
+  flex-direction: column;
+  
+  .inc-dec-btns-container {
+    display: flex;
+    
+    .inc-dec-btn-container {
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      p {
+        margin: 5px;
+      }
+
+      [class*="Btn"] {
+        margin: 1px;
+      }
+    }
+  }
+
+  .TextInput {
+    margin: 5px 0;
+  }
+  
+  .SubmitBtn {
+    margin: 5px 0;
+  }
+}

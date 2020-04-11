@@ -1,0 +1,12 @@
+.TextInput {
+  height: 33px;
+  padding-top: 0.2rem;
+  border-radius: 5px;
+  background-color: $gainsvilleFurnitureLight;
+  
+  &::placeholder {
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    color: $gainsvilleFurniture;
+  }
+}

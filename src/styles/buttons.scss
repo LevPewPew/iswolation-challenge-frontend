@@ -1,0 +1,15 @@
+button {
+  &:focus {
+    outline: 0;
+  }
+  
+  &:active:enabled {
+    -webkit-box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 10px 10px 43px -32px rgba(0, 0, 0, 0.75);
+
+    h1 {
+      transform: scale(0.9);
+    }
+  }
+}
