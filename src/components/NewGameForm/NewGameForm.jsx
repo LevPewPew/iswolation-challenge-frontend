@@ -96,7 +96,6 @@ function NewGameForm() {
     const [ totalExercises, setTotalExercises] = useState(1);
 
     const onSubmit = async (data) => {
-      console.log(data);
       let exercises = [];
       let obj = {};
       Object.values(data).forEach((item, index) => {
@@ -108,15 +107,14 @@ function NewGameForm() {
           obj = {};
         }
       });
-      
       const newFormData = {
         ...formData,
         exercises
       };
+
       setFormData(newFormData);
       setCurrentSubForm(0);
-      
-      await axios.post(`${WEB_SERVER}/games`, formData);
+      await axios.post(`${WEB_SERVER}/games`, newFormData);
       // TODO redirect to page with this data ID
     };
   
