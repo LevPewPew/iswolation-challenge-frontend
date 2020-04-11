@@ -2,23 +2,20 @@
   width: 38.2%;
   display: flex;
   flex-direction: column;
-  
-  .inc-dec-btns-container {
+
+  .inc-dec-container {
+    margin: 5px 0;
+    margin-left: auto;
     display: flex;
-    
-    .inc-dec-btn-container {
-      margin: 5px 0;
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
+    justify-content: right;
+    align-items: center;
 
-      p {
-        margin: 5px;
-      }
+    p {
+      margin: 5px;
+    }
 
-      [class*="Btn"] {
-        margin: 1px;
-      }
+    [class*="Btn"] {
+      margin: 1px;
     }
   }
 

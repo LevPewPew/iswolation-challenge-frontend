@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SubmitBtn(props) {
-  const { post, text } = props;
+  const { text } = props;
 
   return (
     <button

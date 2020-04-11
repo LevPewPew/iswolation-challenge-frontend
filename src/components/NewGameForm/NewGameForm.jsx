@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DecrementBtn, IncrementBtn, SubmitBtn, TextInput } from 'components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const WEB_SERVER = process.env.REACT_APP_BACKEND_URL;
 const MIN_PLAYERS = 1;
@@ -62,7 +63,7 @@ function NewGameForm() {
   
     return (
       <form className="NewGameForm PlayersForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="inc-dec-btn-container">
+        <div className="inc-dec-container">
           <p>Total Players</p>
           <IncrementBtn
             max={MAX_PLAYERS}
@@ -115,12 +116,11 @@ function NewGameForm() {
       setFormData(newFormData);
       setCurrentSubForm(0);
       await axios.post(`${WEB_SERVER}/games`, newFormData);
-      // TODO redirect to page with this data ID
     };
   
     return (
       <form className="NewGameForm PlayersForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="inc-dec-btn-container">
+        <div className="inc-dec-container">
           <p>Total Exercises</p>
           <IncrementBtn
             max={MAX_EXERCISES}
@@ -147,9 +147,13 @@ function NewGameForm() {
             </>
           ))
         }
-        <SubmitBtn
-          text="Begin Iswolation"
-        />
+        <Link
+          to="/game"
+        >
+          <SubmitBtn
+            text="Begin Iswolation"
+          />
+        </Link>
       </form>
     );
   }
@@ -160,4 +164,3 @@ function NewGameForm() {
 }
 
 export default NewGameForm;
-// TODO get rid of redundant css post split
