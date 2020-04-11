@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NewGameForm } from 'components';
 
+function MainPage(props) {
+  const { setIsOnGamePage } = props;
 
-function MainPage() {
+  useEffect(() => {
+    setIsOnGamePage(false);
+  }, [])
+
   return (
     <main className="MainPage">
       <NewGameForm />

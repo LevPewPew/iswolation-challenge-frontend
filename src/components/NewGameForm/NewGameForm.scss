@@ -19,6 +19,22 @@
     }
   }
 
+  .exercise-reps {
+    display: flex;
+    
+    .TextInput {
+      flex-grow: 1;
+    }
+    
+    .TextInput:nth-of-type(1) {
+      margin-right: 1px;
+    }
+    
+    .TextInput:nth-of-type(2) {
+      margin-left: 1px;
+    }
+  }
+
   .TextInput {
     margin: 5px 0;
   }

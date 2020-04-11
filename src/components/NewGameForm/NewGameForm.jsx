@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DecrementBtn, IncrementBtn, SubmitBtn, TextInput } from 'components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const WEB_SERVER = process.env.REACT_APP_BACKEND_URL;
 const MIN_PLAYERS = 1;
 const MAX_PLAYERS = 100;
 const MIN_EXERCISES = 1;
 const MAX_EXERCISES = 10;
-
 
 function NewGameForm() {
   const [ currentSubForm, setCurrentSubForm ] = useState(0);
@@ -92,7 +91,8 @@ function NewGameForm() {
   }
   
   function ExercisesForm(props) {
-    const { setCurrentSubForm } = props;
+    const history = useHistory();
+    
     const { register, handleSubmit } = useForm();
     const [ totalExercises, setTotalExercises] = useState(1);
 
@@ -114,8 +114,8 @@ function NewGameForm() {
       };
 
       setFormData(newFormData);
-      setCurrentSubForm(0);
       await axios.post(`${WEB_SERVER}/games`, newFormData);
+      history.push('/game');
     };
   
     return (
@@ -135,7 +135,7 @@ function NewGameForm() {
         </div>
         {
           [...Array(totalExercises).keys()].map((i) => (
-            <>
+            <div className="exercise-reps">
               <TextInput
                 name={`exercise${i}`}
                 register={register}
@@ -144,16 +144,12 @@ function NewGameForm() {
                 name={`reps${i}`}
                 register={register}
               />
-            </>
+            </div>
           ))
         }
-        <Link
-          to="/game"
-        >
-          <SubmitBtn
-            text="Begin Iswolation"
-          />
-        </Link>
+        <SubmitBtn
+          text="Begin Iswolation"
+        />
       </form>
     );
   }

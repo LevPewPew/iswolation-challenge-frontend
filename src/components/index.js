@@ -2,6 +2,7 @@ import Banner from './Banner/Banner';
 import BicepParticle from './BicepParticle/BicepParticle';
 import ExerciseCounter from './ExerciseCounter/ExerciseCounter';
 import Footer from './Footer/Footer';
+import GeneralBtn from './GeneralBtn/GeneralBtn';
 import NewGameForm from './NewGameForm/NewGameForm';
 import PlayerCard from './PlayerCard/PlayerCard';
 import PlusRepBtn from './PlusRepBtn/PlusRepBtn';
@@ -20,6 +21,7 @@ export {
   BicepParticle,
   ExerciseCounter,
   Footer,
+  GeneralBtn,
   NewGameForm,
   PlayerCard,
   PlusRepBtn,

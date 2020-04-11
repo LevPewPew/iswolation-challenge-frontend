@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PlayerRow } from 'components';
 
 const data = [
@@ -22,7 +22,13 @@ const data = [
   },
 ]
 
-function GamePage() {
+function GamePage(props) {
+  const { setIsOnGamePage } = props;
+
+  useEffect(() => {
+    setIsOnGamePage(true);
+  }, [])
+
   return (
     <main className="GamePage">
       <div className="player-row-container">

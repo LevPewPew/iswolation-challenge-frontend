@@ -5,4 +5,16 @@
   h1 {
     margin: 20px 0;
   }
+
+  .h1-button-container {
+    display: flex;
+
+    h1 {
+      flex-grow: 1;
+    }
+
+    .GeneralBtn {
+      margin: 20px 0;
+    }
+  }
 }
