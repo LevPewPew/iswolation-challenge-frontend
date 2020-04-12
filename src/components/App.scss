@@ -1,3 +1,15 @@
+@mixin bp($point) {
+  @if $point == smallScreen {
+    @media (max-width: 1125px) { @content; }
+  } @else if $point == tablet {
+    @media (max-width: 768px) { @content; }
+  } @else if $point == mobile {
+    @media (max-width: 520px) { @content; }
+  } @else if $point == smallMobile {
+    @media (max-width: 374px) { @content; }
+  }
+}
+
 // partials
 @import '../styles/colors';
 @import '../styles/fonts';
@@ -8,6 +20,10 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+
+  @include bp(smallScreen) {
+    width: 93%;
+  }
 
   // categories
   @import '../styles/buttons';

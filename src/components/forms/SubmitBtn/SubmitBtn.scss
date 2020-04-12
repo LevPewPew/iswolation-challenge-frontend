@@ -5,7 +5,23 @@
   font-size: 1rem;
   background-color: $gainsvilleFurnitureDark;
 
+  @include bp(mobile) {
+    height: 62px;
+  }
+
+  @include bp(smallMobile) {
+    height: 58px;
+  }
+
   h1 {
     color: $gainsvilleFurniture;
+
+    @include bp(mobile) {
+      font-size: 28px;
+    }
+
+    @include bp(smallMobile) {
+      font-size: 22px;
+    }
   }
 }

@@ -1,6 +1,10 @@
 import React from 'react';
-import { GeneralBtn } from 'components';
 import { useHistory } from 'react-router-dom';
+import { GeneralBtn } from 'components';
+
+const appDescription = `
+Keep the health of you and your friends in check during self-isolation or quarantine. Set exercises with rep counts to hit daily! Micro-workouts spread through out the day, or one longer session, are both great options.
+`
 
 function Banner(props) {
   const { isOnGamePage } = props;
@@ -23,7 +27,7 @@ function Banner(props) {
           null
         }
       </div>
-      <p>Keep the health of you and your friends in check during self-isolation or quarantine. Set exercise rep counts to hit daily!</p>
+      <p>{appDescription}</p>
     </header>
   );
 }
