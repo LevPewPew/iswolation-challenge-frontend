@@ -19,7 +19,7 @@ function App() {
               setIsOnGamePage={setIsOnGamePage}
             /> 
           </Route>
-          <Route path="/game">
+          <Route path="/:id">
             <GamePage
               setIsOnGamePage={setIsOnGamePage}
             />

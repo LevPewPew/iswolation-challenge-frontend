@@ -119,8 +119,8 @@ function NewGameForm() {
       };
 
       setFormData(newFormData);
-      await axios.post(`${WEB_SERVER}/games`, newFormData);
-      history.push('/game');
+      const res = await axios.post(`${WEB_SERVER}/games`, newFormData);
+      history.push(`/${res.data._id}`);
     };
   
     return (

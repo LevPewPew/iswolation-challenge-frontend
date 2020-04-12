@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { PlayerRow } from 'components';
-import { useState } from 'react';
 import axios from 'axios';
 
 function GamePage(props) {
   const { setIsOnGamePage } = props;
   const [ data, setData ] = useState(null);
+  const { id } = useParams();
 
   const getData = async () => {
-    const gameId = '5e911fbfeac7e32999e1c0e7';
-
     try {
-      const res = await axios.get(`http://localhost:5009/games/${gameId}`);
+      const res = await axios.get(`http://localhost:5009/games/${id}`);
       setData(res.data);
     } catch (err) {
       console.log(err);
