@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { DecrementBtn, IncrementBtn, SubmitBtn, TextInput } from 'components';
+import {
+  DecrementBtn,
+  IncrementBtn,
+  SubmitBtn,
+  TextInput
+} from 'components';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 

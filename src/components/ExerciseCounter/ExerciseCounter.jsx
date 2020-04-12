@@ -13,18 +13,18 @@ function ExerciseCounter(props) {
     <div className="ExerciseCounter">
       <PlusRepBtn
         exerciseIndex={exerciseIndex}
-        maxReps={exercise.maxReps}
+        maxReps={exercise.reps}
         playerIndex={playerIndex}
         reps={reps}
         setReps={setReps}
       />
       <ProgressBar
-        maxReps={exercise.maxReps}
+        maxReps={exercise.reps}
         name={exercise.name}
         reps={reps}
       />
       <ProgressCount
-        maxReps={exercise.maxReps}
+        maxReps={exercise.reps}
         reps={reps}
       />
     </div>
