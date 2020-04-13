@@ -24,22 +24,27 @@ function GamePage(props) {
 
   return (
     <main className="GamePage">
-      <div className="player-row-container">
-        {
-          data ? 
-          data.players.map((player, index) => {
-            return (
-              <PlayerRow
-                data={data}
-                key={index}
-                playerIndex={index}
-                playerName={player}
-              />
-            );
-          }) :
-          null
-        }
-      </div>
+      {
+        data ?
+        <>
+          <h1>{data.groupName}</h1>
+          <div className="player-row-container">
+            {
+              data.players.map((player, index) => {
+                return (
+                  <PlayerRow
+                    data={data}
+                    key={index}
+                    playerIndex={index}
+                    playerName={player}
+                  />
+                );
+              })
+            }
+          </div>
+        </> :
+        null
+      }
     </main>
   );
 }

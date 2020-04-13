@@ -1,6 +1,6 @@
 .TextInput {
   height: 33px;
-  padding-left: 12px;
+  padding: 0 12px;
   border-radius: 5px;
   background-color: $gainsvilleFurnitureLight;
   color: $swolePatrolDark;
@@ -8,11 +8,13 @@
 
   @include bp(mobile) {
     height: 31px;
+    padding: 0 10px;
     font-size: 15px;
   }
 
   @include bp(smallMobile) {
     height: 29px;
+    padding: 0 8px;
     font-size: 14px;
   }
   
