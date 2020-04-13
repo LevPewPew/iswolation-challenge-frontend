@@ -3,12 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { colors } from 'styles';
 
-function IncrementBtn(props) {
-  const { max, stateSetter, stateValue } = props;
-
+function IncrementBtn({ max, stateSetter, stateValue }) {
   const handleClick = (event) => {
     event.preventDefault();
-    
+
     if (stateValue < max) {
       stateSetter(stateValue + 1);
     }

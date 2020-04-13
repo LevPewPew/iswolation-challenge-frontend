@@ -5,9 +5,8 @@ import {
   ProgressCount,
 } from 'components';
 
-function ExerciseCounter(props) {
+function ExerciseCounter({ exercise, exerciseIndex, playerIndex }) {
   const [ reps, setReps ] = useState(0);
-  const { exercise, exerciseIndex, playerIndex } = props;
   
   return (
     <div className="ExerciseCounter">

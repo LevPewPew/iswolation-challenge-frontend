@@ -1,12 +1,9 @@
 import React from 'react';
 
-function BicepParticle(props) {
-  const { reactMotionStyles } = props;
-  return (
-    <div className="BicepParticle" style={reactMotionStyles}>
-      💪
-    </div>
-  );
-}
+const BicepParticle = ({ reactMotionStyles }) => (
+  <div className="BicepParticle" style={reactMotionStyles}>
+    💪
+  </div>
+);
 
 export default BicepParticle;

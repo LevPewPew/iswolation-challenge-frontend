@@ -5,8 +5,7 @@ import { Motion, spring } from 'react-motion';
 import { BicepParticle } from 'components';
 import { colors } from 'styles';
 
-function PlusRepBtn(props) {
-  const { exerciseIndex, maxReps, playerIndex, setReps, reps } = props;
+function PlusRepBtn({ maxReps,  setReps, reps }) {
   const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot1.wav");
   const [ biceps, setBiceps ] = useState([]);
   const timer = useRef(false);

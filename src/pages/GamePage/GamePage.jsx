@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { PlayerRow } from 'components';
 import axios from 'axios';
 
-function GamePage(props) {
-  const { setIsOnGamePage } = props;
+function GamePage({ setIsOnGamePage }) {
   const [ data, setData ] = useState(null);
   const { id } = useParams();
 

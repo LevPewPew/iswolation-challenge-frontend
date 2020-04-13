@@ -1,9 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-function TextInput(props) {
-  const { name, register } = props;
-
+function TextInput({ name, register }) {
   const createPlaceholderFromName = (name) => (_.startCase(name));
 
   return (

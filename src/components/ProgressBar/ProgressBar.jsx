@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function ProgressBar(props) {
-  const { maxReps, name, reps } = props;
+function ProgressBar({ maxReps, name, reps }) {
   const [ percentProgress, setPercentProgress ] = useState(0);
   const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
 
