@@ -8,12 +8,15 @@ import {
 } from 'components';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { environment, validation } from 'config';
 
-const WEB_SERVER = process.env.REACT_APP_BACKEND_URL;
-const MIN_PLAYERS = 1;
-const MAX_PLAYERS = 100;
-const MIN_EXERCISES = 1;
-const MAX_EXERCISES = 10;
+const { WEB_SERVER } = environment;
+const {
+  MIN_PLAYERS,
+  MAX_PLAYERS,
+  MIN_EXERCISES,
+  MAX_EXERCISES,
+} = validation;
 
 function NewGameForm() {
   const [ currentSubForm, setCurrentSubForm ] = useState(0);
