@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   DecrementBtn,
+  FormErrorMsg,
   IncrementBtn,
+  NumberInput,
   SubmitBtn,
   TextInput
 } from 'components';
@@ -12,10 +14,18 @@ import { environment, validation } from 'config';
 
 const { WEB_SERVER } = environment;
 const {
-  MIN_PLAYERS,
-  MAX_PLAYERS,
-  MIN_EXERCISES,
-  MAX_EXERCISES,
+  MIN_GROUP_NAME_CHARS,
+  MAX_GROUP_NAME_CHARS,
+  MIN_PLAYERS_CHARS,
+  MAX_PLAYERS_CHARS,
+  MIN_PLAYERS_LENGTH,
+  MAX_PLAYERS_LENGTH,
+  MIN_EXERCISE_NAME_CHARS,
+  MAX_EXERCISE_NAME_CHARS,
+  MIN_EXERCISES_LENGTH,
+  MAX_EXERCISES_LENGTH,
+  MIN_REPS_COUNT,
+  MAX_REPS_COUNT
 } = validation;
 
 function NewGameForm() {
@@ -33,11 +43,68 @@ function NewGameForm() {
       setCurrentSubForm={setCurrentSubForm}
     />
   ]
-  
-  function GroupNameForm(props) {
-    const { setCurrentSubForm } = props;
-    const { register, handleSubmit } = useForm();
 
+  const validations = {
+    groupName: {
+      required: {
+        value: true,
+        message: 'Required'
+      },
+      minLength: {
+        value: MIN_GROUP_NAME_CHARS,
+        message: `Group Name too short, minimum ${MIN_GROUP_NAME_CHARS} characters`
+      },
+      maxLength: {
+        value: MAX_GROUP_NAME_CHARS,
+        message: `Group Name too long, maximum ${MAX_GROUP_NAME_CHARS} characters`
+      }
+    },
+    player: {
+      required: {
+        value: true,
+        message: 'Required'
+      },
+      minLength: {
+        value: MIN_PLAYERS_CHARS,
+        message: `Name too short, minimum ${MIN_PLAYERS_CHARS} characters`
+      },
+      maxLength: {
+        value: MAX_PLAYERS_CHARS,
+        message: `Name too long, maximum ${MAX_PLAYERS_CHARS} characters`
+      }
+    },
+    exercise: {
+      required: {
+        value: true,
+        message: 'Required'
+      },
+      minLength: {
+        value: MIN_EXERCISE_NAME_CHARS,
+        message: `Name too short, minimum ${MIN_EXERCISE_NAME_CHARS} characters`
+      },
+      maxLength: {
+        value: MAX_EXERCISE_NAME_CHARS,
+        message: `Name too long, maximum ${MAX_EXERCISE_NAME_CHARS} characters`
+      }
+    },
+    reps: {
+      required: {
+        value: true,
+        message: 'Required'
+      },
+      min: {
+        value: MIN_REPS_COUNT,
+        message: `Not enough reps, minimum ${MIN_REPS_COUNT} reps`
+      },
+      max: {
+        value: MAX_REPS_COUNT,
+        message: `Too many reps, maximum ${MAX_REPS_COUNT} reps`
+      }
+    }
+  }
+  
+  function GroupNameForm({ setCurrentSubForm }) {
+    const { errors, handleSubmit, register } = useForm();
     const onSubmit = (data) => {
       const newFormData = { ...formData, ...data };
       setFormData(newFormData);
@@ -48,7 +115,11 @@ function NewGameForm() {
       <form className="NewGameForm GroupNameForm" onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           name="groupName"
-          register={register}
+          register={register(validations.groupName)}
+          maxLength={MAX_GROUP_NAME_CHARS}
+        />
+        <FormErrorMsg
+          error={errors.groupName}
         />
         <SubmitBtn
           text="Next"
@@ -57,9 +128,8 @@ function NewGameForm() {
     );
   }
   
-  function PlayersForm(props) {
-    const { setCurrentSubForm } = props;
-    const { register, handleSubmit } = useForm();
+  function PlayersForm({ setCurrentSubForm }) {
+    const { errors, register, handleSubmit } = useForm();
     const [ totalPlayers, setTotalPlayers ] = useState(1);
 
     const onSubmit = (data) => {
@@ -73,22 +143,28 @@ function NewGameForm() {
         <div className="inc-dec-container">
           <p>Total Players</p>
           <IncrementBtn
-            max={MAX_PLAYERS}
+            max={MAX_PLAYERS_LENGTH}
             stateSetter={setTotalPlayers}
             stateValue={totalPlayers}
           />
           <DecrementBtn
-            min={MIN_PLAYERS}
+            min={MIN_PLAYERS_LENGTH}
             stateSetter={setTotalPlayers}
             stateValue={totalPlayers}
           />
         </div>
         {
           [...Array(totalPlayers).keys()].map((i) => (
-            <TextInput
-              name={`player${i}`}
-              register={register}
-            />
+            <>
+              <TextInput
+                name={`player${i}`}
+                register={register(validations.player)}
+                maxLength={MAX_PLAYERS_CHARS}
+              />
+              <FormErrorMsg
+                error={errors[`player${i}`]}
+              />
+            </>
           ))
         }
         <SubmitBtn
@@ -98,10 +174,9 @@ function NewGameForm() {
     );
   }
   
-  function ExercisesForm(props) {
+  function ExercisesForm() {
+    const { errors, register, handleSubmit } = useForm();
     const history = useHistory();
-    
-    const { register, handleSubmit } = useForm();
     const [ totalExercises, setTotalExercises] = useState(1);
 
     const onSubmit = async (data) => {
@@ -131,28 +206,43 @@ function NewGameForm() {
         <div className="inc-dec-container">
           <p>Total Exercises</p>
           <IncrementBtn
-            max={MAX_EXERCISES}
+            max={MAX_EXERCISES_LENGTH}
             stateSetter={setTotalExercises}
             stateValue={totalExercises}
             />
           <DecrementBtn
-            min={MIN_EXERCISES}
+            min={MIN_EXERCISES_LENGTH}
             stateSetter={setTotalExercises}
             stateValue={totalExercises}
           />
         </div>
         {
           [...Array(totalExercises).keys()].map((i) => (
-            <div className="exercise-reps">
-              <TextInput
-                name={`exercise${i}`}
-                register={register}
-              />
-              <TextInput
-                name={`reps${i}`}
-                register={register}
-              />
-            </div>
+            <>
+              <div className="exercise-reps-container">
+                <div className="input-error-container">
+                  <TextInput
+                    name={`exercise${i}`}
+                    register={register(validations.exercise)}
+                    maxLength={MAX_EXERCISE_NAME_CHARS}
+                  />
+                  <FormErrorMsg
+                    error={errors[`exercise${i}`]}
+                  />
+                </div>
+                <div className="input-error-container">
+                  <NumberInput
+                    name={`reps${i}`}
+                    register={register(validations.reps)}
+                    min={MIN_REPS_COUNT}
+                    max={MAX_REPS_COUNT}
+                  />
+                  <FormErrorMsg
+                    error={errors[`reps${i}`]}
+                  />
+                </div>
+              </div>
+            </>
           ))
         }
         <SubmitBtn

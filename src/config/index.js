@@ -1,6 +1,6 @@
-import environment from './environment';
-import validation from './validation';
-import text from './text';
+import { environment } from './environment';
+import { validation } from './validation';
+import { text } from './text';
 
 export {
   environment,

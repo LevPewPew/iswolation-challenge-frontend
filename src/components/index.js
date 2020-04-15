@@ -12,7 +12,9 @@ import ProgressCount from './ProgressCount/ProgressCount';
 
 // forms
 import DecrementBtn from './forms/DecrementBtn/DecrementBtn';
+import FormErrorMsg from './forms/FormErrorMsg/FormErrorMsg';
 import IncrementBtn from './forms/IncrementBtn/IncrementBtn';
+import NumberInput from './forms/NumberInput/NumberInput';
 import SubmitBtn from './forms/SubmitBtn/SubmitBtn';
 import TextInput from './forms/TextInput/TextInput';
 
@@ -31,7 +33,9 @@ export {
 
   // forms
   DecrementBtn,
+  FormErrorMsg,
   IncrementBtn,
+  NumberInput,
   SubmitBtn,
   TextInput,
 }

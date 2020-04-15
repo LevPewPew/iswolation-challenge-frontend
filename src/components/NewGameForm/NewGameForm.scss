@@ -39,23 +39,38 @@
     }
   }
 
-  .exercise-reps {
+  .exercise-reps-container {
     display: flex;
     
-    .TextInput {
+    .input-error-container:nth-of-type(1) {
       width: 100%;
     }
     
-    .TextInput:nth-of-type(1) {
-      margin-right: 1px;
+    .input-error-container:nth-of-type(2) {
+      width: 50%;
     }
-    
-    .TextInput:nth-of-type(2) {
-      margin-left: 1px;
+
+    .input-error-container {
+      display: flex;
+      flex-direction: column;
+
+      .TextInput {
+        width: 100%;
+        margin-right: 1px;
+      }
+      
+      .NumberInput {
+        width: 100%;
+        margin-left: 1px;
+      }
     }
   }
 
   .TextInput {
+    margin: 5px 0;
+  }
+
+  .NumberInput {
     margin: 5px 0;
   }
   
