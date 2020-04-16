@@ -202,7 +202,7 @@ function NewGameForm() {
     };
   
     return (
-      <form className="NewGameForm PlayersForm" onSubmit={handleSubmit(onSubmit)}>
+      <form className="NewGameForm ExercisesForm" onSubmit={handleSubmit(onSubmit)}>
         <div className="inc-dec-container">
           <p>Total Exercises</p>
           <IncrementBtn

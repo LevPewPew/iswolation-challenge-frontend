@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { colors } from 'styles';
 
-function IncrementBtn({ min, stateSetter, stateValue }) {
+function DecrementBtn({ min, stateSetter, stateValue }) {
   const handleClick = (event) => {
     event.preventDefault();
     
@@ -13,10 +13,10 @@ function IncrementBtn({ min, stateSetter, stateValue }) {
   };
 
   return (
-    <button className="IncrementBtn" onClick={handleClick} disabled={stateValue === min}>
+    <button className="DecrementBtn" onClick={handleClick} disabled={stateValue === min}>
       <FontAwesomeIcon icon={faMinus} color={colors.doYouEvenLift} />
     </button>
   );
 }
 
-export default IncrementBtn;
+export default DecrementBtn;
