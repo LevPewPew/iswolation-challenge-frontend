@@ -234,8 +234,6 @@ function NewGameForm() {
                   <NumberInput
                     name={`reps${i}`}
                     register={register(validations.reps)}
-                    min={MIN_REPS_COUNT}
-                    max={MAX_REPS_COUNT}
                   />
                   <FormErrorMsg
                     error={errors[`reps${i}`]}
