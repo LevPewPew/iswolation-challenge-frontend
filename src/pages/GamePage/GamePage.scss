@@ -6,4 +6,28 @@
   .PlayerRow {
     margin: 20px 0;
   }
+
+  .label-btn-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    label {
+      margin-right: 20px;
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    .GeneralBtn {
+      height: 44px;
+      padding: 2px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .fa-copy {
+        font-size: 24px;
+      }
+    }
+  }
 }
