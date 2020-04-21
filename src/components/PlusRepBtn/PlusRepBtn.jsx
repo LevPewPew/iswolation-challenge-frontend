@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Motion, spring } from 'react-motion';
 import { BicepParticle } from 'components';
+import { SmokeParticleMotion } from 'animations';
 import { colors } from 'styles';
 
 function PlusRepBtn({ maxReps,  setReps, reps }) {
@@ -10,30 +10,11 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   const [ biceps, setBiceps ] = useState([]);
   const timer = useRef(false);
 
-  const generateBicep = () => {
-    const randX = Math.random() * 80 + 20;
-    const randY = Math.random() * -150 - 50;
-
-    return (
-      <Motion
-        defaultStyle={{ x: 0, y: 0, opacity: 2 }}
-        style={{
-          x: spring(randX, { stiffness: 75, damping: 25 }),
-          y: spring(randY, { stiffness: 25, damping: 15 }),
-          opacity: spring(0, { stiffness: 20, damping: 15 })
-        }}
-      >
-        {(style) => (
-          <BicepParticle
-            reactMotionStyles={{
-              opacity: style.opacity,
-              transform: `translate(${style.x}px, ${style.y}px)`
-            }}
-          />
-        )}
-      </Motion>
-    );
-  };
+  const generateBicep = () => (
+    <SmokeParticleMotion>
+      <BicepParticle />
+    </SmokeParticleMotion>
+  );
 
   const handleClick = () => {
     if (reps < maxReps) {
