@@ -11,6 +11,7 @@ import {
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { environment, validation } from 'config';
+import { Motion, spring } from 'react-motion';
 
 const { WEB_SERVER } = environment;
 const {
@@ -112,19 +113,36 @@ function NewGameForm() {
     };
   
     return (
-      <form className="NewGameForm GroupNameForm" onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          name="groupName"
-          register={register(validations.groupName)}
-          maxLength={MAX_GROUP_NAME_CHARS}
-        />
-        <FormErrorMsg
-          error={errors.groupName}
-        />
-        <SubmitBtn
-          text="Next"
-        />
-      </form>
+      <Motion
+        defaultStyle={{ x: -2000, jiggle: 2 }}
+        style={{
+          x: spring(0, { stiffness: 600, damping: 30 }),
+          jiggle: spring(0, { stiffness: 6400, damping: 5 })
+        }}
+      >
+        {(style) => (
+          <form
+            className="NewGameForm GroupNameForm"
+            onSubmit={handleSubmit(onSubmit)}
+            style={{
+              transform: `translateX(${style.x}px) rotateZ(${style.jiggle}deg)`,
+              transformOrigin: "100% 50%"
+            }}
+          >
+            <TextInput
+              name="groupName"
+              register={register(validations.groupName)}
+              maxLength={MAX_GROUP_NAME_CHARS}
+            />
+            <FormErrorMsg
+              error={errors.groupName}
+            />
+            <SubmitBtn
+              text="Next"
+            />
+          </form>
+        )}
+      </Motion>
     );
   }
   
@@ -139,38 +157,55 @@ function NewGameForm() {
     };
   
     return (
-      <form className="NewGameForm PlayersForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="inc-dec-container">
-          <p>Total Players</p>
-          <IncrementBtn
-            max={MAX_PLAYERS_LENGTH}
-            stateSetter={setTotalPlayers}
-            stateValue={totalPlayers}
-          />
-          <DecrementBtn
-            min={MIN_PLAYERS_LENGTH}
-            stateSetter={setTotalPlayers}
-            stateValue={totalPlayers}
-          />
-        </div>
-        {
-          [...Array(totalPlayers).keys()].map((i) => (
-            <>
-              <TextInput
-                name={`player${i}`}
-                register={register(validations.player)}
-                maxLength={MAX_PLAYERS_CHARS}
+      <Motion
+        defaultStyle={{ x: -2000, jiggle: 2 }}
+        style={{
+          x: spring(0, { stiffness: 600, damping: 30 }),
+          jiggle: spring(0, { stiffness: 6400, damping: 5 })
+        }}
+      >
+        {(style) => (
+          <form
+            className="NewGameForm PlayersForm"
+            onSubmit={handleSubmit(onSubmit)}
+            style={{
+              transform: `translateX(${style.x}px) rotateZ(${style.jiggle}deg)`,
+              transformOrigin: "100% 50%"
+            }}
+          >
+            <div className="inc-dec-container">
+              <p>Total Players</p>
+              <IncrementBtn
+                max={MAX_PLAYERS_LENGTH}
+                stateSetter={setTotalPlayers}
+                stateValue={totalPlayers}
               />
-              <FormErrorMsg
-                error={errors[`player${i}`]}
+              <DecrementBtn
+                min={MIN_PLAYERS_LENGTH}
+                stateSetter={setTotalPlayers}
+                stateValue={totalPlayers}
               />
-            </>
-          ))
-        }
-        <SubmitBtn
-          text="Next"
-        />
-      </form>
+            </div>
+            {
+              [...Array(totalPlayers).keys()].map((i) => (
+                <>
+                  <TextInput
+                    name={`player${i}`}
+                    register={register(validations.player)}
+                    maxLength={MAX_PLAYERS_CHARS}
+                  />
+                  <FormErrorMsg
+                    error={errors[`player${i}`]}
+                  />
+                </>
+              ))
+            }
+            <SubmitBtn
+              text="Next"
+            />
+          </form>
+        )}
+      </Motion>
     );
   }
   
@@ -202,51 +237,68 @@ function NewGameForm() {
     };
   
     return (
-      <form className="NewGameForm ExercisesForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="inc-dec-container">
-          <p>Total Exercises</p>
-          <IncrementBtn
-            max={MAX_EXERCISES_LENGTH}
-            stateSetter={setTotalExercises}
-            stateValue={totalExercises}
+      <Motion
+        defaultStyle={{ x: -2000, jiggle: 2 }}
+        style={{
+          x: spring(0, { stiffness: 600, damping: 30 }),
+          jiggle: spring(0, { stiffness: 6400, damping: 5 })
+        }}
+      >
+        {(style) => (
+          <form
+            className="NewGameForm ExercisesForm"
+            onSubmit={handleSubmit(onSubmit)}
+            style={{
+              transform: `translateX(${style.x}px) rotateZ(${style.jiggle}deg)`,
+              transformOrigin: "100% 50%"
+            }}
+          >
+            <div className="inc-dec-container">
+              <p>Total Exercises</p>
+              <IncrementBtn
+                max={MAX_EXERCISES_LENGTH}
+                stateSetter={setTotalExercises}
+                stateValue={totalExercises}
+                />
+              <DecrementBtn
+                min={MIN_EXERCISES_LENGTH}
+                stateSetter={setTotalExercises}
+                stateValue={totalExercises}
+              />
+            </div>
+            {
+              [...Array(totalExercises).keys()].map((i) => (
+                <>
+                  <div className="exercise-reps-container">
+                    <div className="input-error-container">
+                      <TextInput
+                        name={`exercise${i}`}
+                        register={register(validations.exercise)}
+                        maxLength={MAX_EXERCISE_NAME_CHARS}
+                      />
+                      <FormErrorMsg
+                        error={errors[`exercise${i}`]}
+                      />
+                    </div>
+                    <div className="input-error-container">
+                      <NumberInput
+                        name={`reps${i}`}
+                        register={register(validations.reps)}
+                      />
+                      <FormErrorMsg
+                        error={errors[`reps${i}`]}
+                      />
+                    </div>
+                  </div>
+                </>
+              ))
+            }
+            <SubmitBtn
+              text="Begin Iswolation"
             />
-          <DecrementBtn
-            min={MIN_EXERCISES_LENGTH}
-            stateSetter={setTotalExercises}
-            stateValue={totalExercises}
-          />
-        </div>
-        {
-          [...Array(totalExercises).keys()].map((i) => (
-            <>
-              <div className="exercise-reps-container">
-                <div className="input-error-container">
-                  <TextInput
-                    name={`exercise${i}`}
-                    register={register(validations.exercise)}
-                    maxLength={MAX_EXERCISE_NAME_CHARS}
-                  />
-                  <FormErrorMsg
-                    error={errors[`exercise${i}`]}
-                  />
-                </div>
-                <div className="input-error-container">
-                  <NumberInput
-                    name={`reps${i}`}
-                    register={register(validations.reps)}
-                  />
-                  <FormErrorMsg
-                    error={errors[`reps${i}`]}
-                  />
-                </div>
-              </div>
-            </>
-          ))
-        }
-        <SubmitBtn
-          text="Begin Iswolation"
-        />
-      </form>
+          </form>
+        )}
+      </Motion>
     );
   }
 

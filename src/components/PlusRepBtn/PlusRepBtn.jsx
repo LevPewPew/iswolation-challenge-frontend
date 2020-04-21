@@ -52,8 +52,8 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   };
 
   return (
-    <button className={`PlusRepBtn`} onClick={handleClick} >
-      <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift}/>
+    <button className={`PlusRepBtn`} onClick={handleClick}>
+      <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift} />
       {
         biceps.map((bicep) => bicep)
       }
