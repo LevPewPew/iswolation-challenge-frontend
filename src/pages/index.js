@@ -4,4 +4,4 @@ import MainPage from './MainPage/MainPage';
 export {
   GamePage,
   MainPage,
-}
+};
