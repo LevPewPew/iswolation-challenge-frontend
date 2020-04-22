@@ -1,7 +1,7 @@
 import React from 'react';
 
-const BicepParticle = ({style}) => (
-  <div className="BicepParticle" style={style}>
+const BicepParticle = ({motionStyle}) => (
+  <div className="BicepParticle" style={motionStyle}>
     💪
   </div>
 );

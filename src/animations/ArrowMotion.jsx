@@ -11,10 +11,14 @@ function ArrowMotion (props) {
         jiggle: spring(0, { stiffness: 6400, damping: 5 })
       }}
     >
-      {(style) => (React.cloneElement(props.children, { style: {
-        transform: `translateX(${style.x}px) rotateZ(${style.jiggle}deg)`,
-        transformOrigin: "100% 50%"
-      }}))}
+      {(style) => {
+          let motionStyle = {
+            transform: `translateX(${style.x}px) rotateZ(${style.jiggle}deg)`,
+            transformOrigin: "100% 50%"
+          };
+
+          return React.cloneElement(props.children, { motionStyle });
+      }}
     </Motion>
   );
 }

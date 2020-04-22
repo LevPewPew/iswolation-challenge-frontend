@@ -33,18 +33,6 @@ function NewGameForm() {
   const [ currentSubForm, setCurrentSubForm ] = useState(0);
   const [ formData, setFormData ] = useState({});
 
-  const subForms = [
-    <GroupNameForm
-      setCurrentSubForm={setCurrentSubForm}
-    />,
-    <PlayersForm
-      setCurrentSubForm={setCurrentSubForm}
-    />,
-    <ExercisesForm
-      setCurrentSubForm={setCurrentSubForm}
-    />
-  ]
-
   const validations = {
     groupName: {
       required: {
@@ -104,7 +92,7 @@ function NewGameForm() {
     }
   }
   
-  function GroupNameForm({ setCurrentSubForm }) {
+  function GroupNameForm({ motionStyle, setCurrentSubForm }) {
     const { errors, handleSubmit, register } = useForm();
     const onSubmit = (data) => {
       const newFormData = { ...formData, ...data };
@@ -113,28 +101,27 @@ function NewGameForm() {
     };
   
     return (
-      <ArrowMotion>
-        <form
-          className="NewGameForm GroupNameForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <TextInput
-            name="groupName"
-            register={register(validations.groupName)}
-            maxLength={MAX_GROUP_NAME_CHARS}
-          />
-          <FormErrorMsg
-            error={errors.groupName}
-          />
-          <SubmitBtn
-            text="Next"
-          />
-        </form>
-      </ArrowMotion>
+      <form
+        className="NewGameForm GroupNameForm"
+        onSubmit={handleSubmit(onSubmit)}
+        style={motionStyle}
+      >
+        <TextInput
+          name="groupName"
+          register={register(validations.groupName)}
+          maxLength={MAX_GROUP_NAME_CHARS}
+        />
+        <FormErrorMsg
+          error={errors.groupName}
+        />
+        <SubmitBtn
+          text="Next"
+        />
+      </form>
     );
   }
   
-  function PlayersForm({ setCurrentSubForm }) {
+  function PlayersForm({ motionStyle, setCurrentSubForm }) {
     const { errors, register, handleSubmit } = useForm();
     const [ totalPlayers, setTotalPlayers ] = useState(1);
 
@@ -145,47 +132,46 @@ function NewGameForm() {
     };
   
     return (
-      <ArrowMotion>
-        <form
-          className="NewGameForm PlayersForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="inc-dec-container">
-            <p>Total Players</p>
-            <IncrementBtn
-              max={MAX_PLAYERS_LENGTH}
-              stateSetter={setTotalPlayers}
-              stateValue={totalPlayers}
-            />
-            <DecrementBtn
-              min={MIN_PLAYERS_LENGTH}
-              stateSetter={setTotalPlayers}
-              stateValue={totalPlayers}
-            />
-          </div>
-          {
-            [...Array(totalPlayers).keys()].map((i) => (
-              <>
-                <TextInput
-                  name={`player${i}`}
-                  register={register(validations.player)}
-                  maxLength={MAX_PLAYERS_CHARS}
-                />
-                <FormErrorMsg
-                  error={errors[`player${i}`]}
-                />
-              </>
-            ))
-          }
-          <SubmitBtn
-            text="Next"
+      <form
+        className="NewGameForm PlayersForm"
+        onSubmit={handleSubmit(onSubmit)}
+        style={motionStyle}
+      >
+        <div className="inc-dec-container">
+          <p>Total Players</p>
+          <IncrementBtn
+            max={MAX_PLAYERS_LENGTH}
+            stateSetter={setTotalPlayers}
+            stateValue={totalPlayers}
           />
-        </form>
-      </ArrowMotion>
+          <DecrementBtn
+            min={MIN_PLAYERS_LENGTH}
+            stateSetter={setTotalPlayers}
+            stateValue={totalPlayers}
+          />
+        </div>
+        {
+          [...Array(totalPlayers).keys()].map((i) => (
+            <>
+              <TextInput
+                name={`player${i}`}
+                register={register(validations.player)}
+                maxLength={MAX_PLAYERS_CHARS}
+              />
+              <FormErrorMsg
+                error={errors[`player${i}`]}
+              />
+            </>
+          ))
+        }
+        <SubmitBtn
+          text="Next"
+        />
+      </form>
     );
   }
   
-  function ExercisesForm() {
+  function ExercisesForm({ motionStyle }) {
     const { errors, register, handleSubmit } = useForm();
     const history = useHistory();
     const [ totalExercises, setTotalExercises] = useState(1);
@@ -213,58 +199,87 @@ function NewGameForm() {
     };
   
     return (
-      <ArrowMotion>
-        <form
-          className="NewGameForm ExercisesForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="inc-dec-container">
-            <p>Total Exercises</p>
-            <IncrementBtn
-              max={MAX_EXERCISES_LENGTH}
-              stateSetter={setTotalExercises}
-              stateValue={totalExercises}
-              />
-            <DecrementBtn
-              min={MIN_EXERCISES_LENGTH}
-              stateSetter={setTotalExercises}
-              stateValue={totalExercises}
+      <form
+        className="NewGameForm ExercisesForm"
+        onSubmit={handleSubmit(onSubmit)}
+        style={motionStyle}
+      >
+        <div className="inc-dec-container">
+          <p>Total Exercises</p>
+          <IncrementBtn
+            max={MAX_EXERCISES_LENGTH}
+            stateSetter={setTotalExercises}
+            stateValue={totalExercises}
             />
-          </div>
-          {
-            [...Array(totalExercises).keys()].map((i) => (
-              <>
-                <div className="exercise-reps-container">
-                  <div className="input-error-container">
-                    <TextInput
-                      name={`exercise${i}`}
-                      register={register(validations.exercise)}
-                      maxLength={MAX_EXERCISE_NAME_CHARS}
-                    />
-                    <FormErrorMsg
-                      error={errors[`exercise${i}`]}
-                    />
-                  </div>
-                  <div className="input-error-container">
-                    <NumberInput
-                      name={`reps${i}`}
-                      register={register(validations.reps)}
-                    />
-                    <FormErrorMsg
-                      error={errors[`reps${i}`]}
-                    />
-                  </div>
-                </div>
-              </>
-            ))
-          }
-          <SubmitBtn
-            text="Begin Iswolation"
+          <DecrementBtn
+            min={MIN_EXERCISES_LENGTH}
+            stateSetter={setTotalExercises}
+            stateValue={totalExercises}
           />
-        </form>
-      </ArrowMotion>
+        </div>
+        {
+          [...Array(totalExercises).keys()].map((i) => (
+            <>
+              <div className="exercise-reps-container">
+                <div className="input-error-container">
+                  <TextInput
+                    name={`exercise${i}`}
+                    register={register(validations.exercise)}
+                    maxLength={MAX_EXERCISE_NAME_CHARS}
+                  />
+                  <FormErrorMsg
+                    error={errors[`exercise${i}`]}
+                  />
+                </div>
+                <div className="input-error-container">
+                  <NumberInput
+                    name={`reps${i}`}
+                    register={register(validations.reps)}
+                  />
+                  <FormErrorMsg
+                    error={errors[`reps${i}`]}
+                  />
+                </div>
+              </div>
+            </>
+          ))
+        }
+        <SubmitBtn
+          text="Begin Iswolation"
+        />
+      </form>
     );
   }
+
+  const AnimatedGroupNameForm = () => (
+    <ArrowMotion>
+      <GroupNameForm
+        setCurrentSubForm={setCurrentSubForm}
+      />
+    </ArrowMotion>
+  );
+
+  const AnimatedPlayersForm = () => (
+    <ArrowMotion>
+      <PlayersForm
+        setCurrentSubForm={setCurrentSubForm}
+      />
+    </ArrowMotion>
+  );
+
+  const AnimatedExercisesForm = () => (
+    <ArrowMotion>
+      <ExercisesForm
+        setCurrentSubForm={setCurrentSubForm}
+      />
+    </ArrowMotion>
+  );
+
+  const subForms = [
+    <AnimatedGroupNameForm />,
+    <AnimatedPlayersForm />,
+    <AnimatedExercisesForm />
+  ]
 
   return (
     subForms[currentSubForm]

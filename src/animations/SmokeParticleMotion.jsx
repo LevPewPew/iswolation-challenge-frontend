@@ -15,10 +15,16 @@ function SmokeParticleMotion(props) {
         opacity: spring(0, { stiffness: 20, damping: 15 })
       }}
     >
-      {(style) => (React.cloneElement(props.children, { style: {
-        opacity: style.opacity,
-        transform: `translate(${style.x}px, ${style.y}px)`
-      }}))}
+      {
+        (style) => {
+          let motionStyle = {
+            opacity: style.opacity,
+            transform: `translate(${style.x}px, ${style.y}px)`
+          };
+
+          return React.cloneElement(props.children, { motionStyle });
+        }
+      }
     </Motion>
   );
 }
