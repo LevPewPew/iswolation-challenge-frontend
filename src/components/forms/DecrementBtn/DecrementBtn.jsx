@@ -13,7 +13,7 @@ function DecrementBtn({ min, stateSetter, stateValue }) {
   };
 
   return (
-    <button className="DecrementBtn" onClick={handleClick} disabled={stateValue === min}>
+    <button className="DecrementBtn" onClick={handleClick} disabled={stateValue === min} type="button">
       <FontAwesomeIcon icon={faMinus} color={colors.doYouEvenLift} />
     </button>
   );

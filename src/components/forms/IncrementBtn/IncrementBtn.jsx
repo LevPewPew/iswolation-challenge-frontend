@@ -13,7 +13,7 @@ function IncrementBtn({ max, stateSetter, stateValue }) {
   };
 
   return (
-    <button className="IncrementBtn" onClick={handleClick} disabled={stateValue === max}>
+    <button className="IncrementBtn" onClick={handleClick} disabled={stateValue === max} type="button">
       <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift} />
     </button>
   );
