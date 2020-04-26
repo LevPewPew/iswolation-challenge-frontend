@@ -7,6 +7,7 @@ import { environment } from 'config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { colors } from 'styles';
+import { ArrowMotion, SlabSlamMotion } from 'animations';
 
 const { REACT_SERVER, WEB_SERVER } = environment;
 
@@ -49,20 +50,22 @@ function GamePage({ setIsOnGamePage }) {
               />
             </CopyToClipboard>
           </div>
-          <div className="player-row-container">
-            {
-              data.players.map((player, i) => {
-                return (
-                  <PlayerRow
-                    data={data}
-                    key={i}
-                    playerIndex={i}
-                    playerName={player}
-                  />
-                );
-              })
-            }
-          </div>
+          <SlabSlamMotion>
+            <div className="player-row-container">
+              {
+                data.players.map((player, i) => {
+                  return (
+                    <PlayerRow
+                      data={data}
+                      key={i}
+                      playerIndex={i}
+                      playerName={player}
+                    />
+                  );
+                })
+              }
+            </div>
+          </SlabSlamMotion>
         </> :
         null
       }

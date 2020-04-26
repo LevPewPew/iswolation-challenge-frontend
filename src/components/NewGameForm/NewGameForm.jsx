@@ -92,7 +92,7 @@ function NewGameForm() {
     }
   }
   
-  function GroupNameForm({ motionStyle, setCurrentSubForm }) {
+  function GroupNameForm({ style, setCurrentSubForm }) {
     const { errors, handleSubmit, register } = useForm();
     const onSubmit = (data) => {
       const newFormData = { ...formData, ...data };
@@ -104,7 +104,7 @@ function NewGameForm() {
       <form
         className="NewGameForm GroupNameForm"
         onSubmit={handleSubmit(onSubmit)}
-        style={motionStyle}
+        style={style}
       >
         <TextInput
           name="groupName"
@@ -121,7 +121,7 @@ function NewGameForm() {
     );
   }
   
-  function PlayersForm({ motionStyle, setCurrentSubForm }) {
+  function PlayersForm({ style, setCurrentSubForm }) {
     const { errors, register, handleSubmit } = useForm();
     const [ totalPlayers, setTotalPlayers ] = useState(1);
 
@@ -135,7 +135,7 @@ function NewGameForm() {
       <form
         className="NewGameForm PlayersForm"
         onSubmit={handleSubmit(onSubmit)}
-        style={motionStyle}
+        style={style}
       >
         <div className="inc-dec-container">
           <p>Total Players</p>
@@ -171,7 +171,7 @@ function NewGameForm() {
     );
   }
   
-  function ExercisesForm({ motionStyle }) {
+  function ExercisesForm({ style }) {
     const { errors, register, handleSubmit } = useForm();
     const history = useHistory();
     const [ totalExercises, setTotalExercises] = useState(1);
@@ -179,8 +179,8 @@ function NewGameForm() {
     const onSubmit = async (data) => {
       let exercises = [];
       let obj = {};
-      Object.values(data).forEach((item, index) => {
-        if (index % 2 === 0) {
+      Object.values(data).forEach((item, i) => {
+        if (i % 2 === 0) {
           obj.name = item;
         } else {
           obj.reps = item;
@@ -202,7 +202,7 @@ function NewGameForm() {
       <form
         className="NewGameForm ExercisesForm"
         onSubmit={handleSubmit(onSubmit)}
-        style={motionStyle}
+        style={style}
       >
         <div className="inc-dec-container">
           <p>Total Exercises</p>
