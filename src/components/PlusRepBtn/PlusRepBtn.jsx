@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BicepParticle } from 'components';
 import { SmokeParticleMotion } from 'animations';
+import { v1 as uuidv1 } from 'uuid';
 import { colors } from 'styles';
 
 function PlusRepBtn({ maxReps,  setReps, reps }) {
@@ -11,7 +12,9 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   const timer = useRef(false);
 
   const generateBicep = () => (
-    <SmokeParticleMotion>
+    <SmokeParticleMotion
+      key={uuidv1()}
+    >
       <BicepParticle />
     </SmokeParticleMotion>
   );
@@ -29,7 +32,7 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
       if (reps < maxReps - 1) {
         audio.play();
       }
-    }
+    } 
   };
 
   return (

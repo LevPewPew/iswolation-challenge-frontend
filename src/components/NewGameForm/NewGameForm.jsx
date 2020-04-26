@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   DecrementBtn,
@@ -9,6 +9,7 @@ import {
   TextInput
 } from 'components';
 import axios from 'axios';
+import { v1 as uuidv1 } from 'uuid';
 import { useHistory } from 'react-router-dom';
 import { environment, validation } from 'config';
 import { ArrowMotion } from 'animations';
@@ -152,16 +153,16 @@ function NewGameForm() {
         </div>
         {
           [...Array(totalPlayers).keys()].map((i) => (
-            <>
+            <Fragment key={i}>
               <TextInput
-                name={`player${i}`}
+                name={`player${i + 1}`}
                 register={register(validations.player)}
                 maxLength={MAX_PLAYERS_CHARS}
               />
               <FormErrorMsg
-                error={errors[`player${i}`]}
+                error={errors[`player${i + 1}`]}
               />
-            </>
+            </Fragment>
           ))
         }
         <SubmitBtn
@@ -219,29 +220,29 @@ function NewGameForm() {
         </div>
         {
           [...Array(totalExercises).keys()].map((i) => (
-            <>
+            <Fragment key={i}>
               <div className="exercise-reps-container">
                 <div className="input-error-container">
                   <TextInput
-                    name={`exercise${i}`}
+                    name={`exercise${i + 1}`}
                     register={register(validations.exercise)}
                     maxLength={MAX_EXERCISE_NAME_CHARS}
                   />
                   <FormErrorMsg
-                    error={errors[`exercise${i}`]}
+                    error={errors[`exercise${i + 1}`]}
                   />
                 </div>
                 <div className="input-error-container">
                   <NumberInput
-                    name={`reps${i}`}
+                    name={`reps${i + 1}`}
                     register={register(validations.reps)}
                   />
                   <FormErrorMsg
-                    error={errors[`reps${i}`]}
+                    error={errors[`reps${i + 1}`]}
                   />
                 </div>
               </div>
-            </>
+            </Fragment>
           ))
         }
         <SubmitBtn

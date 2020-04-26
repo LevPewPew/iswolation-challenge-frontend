@@ -4,7 +4,7 @@ import { NewGameForm } from 'components';
 function MainPage({ setIsOnGamePage }) {
   useEffect(() => {
     setIsOnGamePage(false);
-  }, []);
+  }, [setIsOnGamePage]);
 
   return (
     <main className="MainPage">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { v1 as uuidv1 } from 'uuid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { GeneralBtn, PlayerRow } from 'components';
 import { environment } from 'config';
@@ -14,23 +15,24 @@ function GamePage({ setIsOnGamePage }) {
   const [ data, setData ] = useState(null);
   const { id } = useParams();
   const gameAddress = `${REACT_SERVER}/${id}`;
-  const gameDataAddress = `${WEB_SERVER}/games/${id}`
-
+  
   const copyIcon = <FontAwesomeIcon icon={faCopy} color={colors.gainsvilleFurniture} />;
-
-  const getData = async () => {
-    try {
-      const res = await axios.get(gameDataAddress);
-      setData(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  
   useEffect(() => {
+    const gameDataAddress = `${WEB_SERVER}/games/${id}`
+
+    const getData = async () => {
+      try {
+        const res = await axios.get(gameDataAddress);
+        setData(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    
     setIsOnGamePage(true);
     getData();
-  }, []);
+  }, [id, setIsOnGamePage]);
 
   return (
     <main className="GamePage">
@@ -50,12 +52,12 @@ function GamePage({ setIsOnGamePage }) {
           </div>
           <div className="player-row-container">
             {
-              data.players.map((player, index) => {
+              data.players.map((player, i) => {
                 return (
                   <PlayerRow
                     data={data}
-                    key={index}
-                    playerIndex={index}
+                    key={i}
+                    playerIndex={i}
                     playerName={player}
                   />
                 );

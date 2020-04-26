@@ -1,9 +1,9 @@
 import React from 'react';
 
 const BicepParticle = ({motionStyle}) => (
-  <div className="BicepParticle" style={motionStyle}>
+  <span className="BicepParticle" style={motionStyle} role="img" aria-label="bicep">
     💪
-  </div>
+  </span>
 );
 
 export default BicepParticle;

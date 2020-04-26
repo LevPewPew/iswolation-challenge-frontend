@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 function ProgressBar({ maxReps, name, reps }) {
   const [ percentProgress, setPercentProgress ] = useState(0);
-  const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
-
+  
   useEffect(() => {
+    const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
+    
     setPercentProgress((reps / maxReps) * 100);
 
     if (reps === maxReps) {
       audio.play();
     }
-  }, [reps]);
+  }, [maxReps, reps]);
 
   return (
     // &nbsp; are used to avoid fiddling around with padding creating some of the progress bar already "loaded"
