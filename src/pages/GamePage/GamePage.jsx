@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { v1 as uuidv1 } from 'uuid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { GeneralBtn, PlayerRow } from 'components';
 import { environment } from 'config';

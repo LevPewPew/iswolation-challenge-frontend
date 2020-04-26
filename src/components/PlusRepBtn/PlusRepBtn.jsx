@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BicepParticle } from 'components';
 import { SmokeParticleMotion } from 'animations';
-import { v1 as uuidv1 } from 'uuid';
 import { colors } from 'styles';
 
 function PlusRepBtn({ maxReps,  setReps, reps }) {
@@ -13,7 +12,7 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
 
   const generateBicep = () => (
     <SmokeParticleMotion
-      key={uuidv1()}
+      key={`particle_${new Date().getTime()}`}
     >
       <BicepParticle />
     </SmokeParticleMotion>
@@ -38,9 +37,7 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   return (
     <button className={`PlusRepBtn`} onClick={handleClick}>
       <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift} />
-      {
-        biceps.map((bicep) => bicep)
-      }
+      {biceps.map((bicep) => bicep)}
     </button>
   );
 }

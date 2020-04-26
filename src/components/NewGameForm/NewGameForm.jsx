@@ -9,7 +9,6 @@ import {
   TextInput
 } from 'components';
 import axios from 'axios';
-import { v1 as uuidv1 } from 'uuid';
 import { useHistory } from 'react-router-dom';
 import { environment, validation } from 'config';
 import { ArrowMotion } from 'animations';

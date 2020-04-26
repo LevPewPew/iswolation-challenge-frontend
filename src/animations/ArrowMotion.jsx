@@ -7,7 +7,7 @@ function ArrowMotion (props) {
     <Motion
       defaultStyle={{ x: -2000, jiggle: 2 }}
       style={{
-        x: spring(0, { stiffness: 600, damping: 30 }),
+        x: spring(0, { stiffness: 2100, damping: 60 }),
         jiggle: spring(0, { stiffness: 6400, damping: 5 })
       }}
     >
