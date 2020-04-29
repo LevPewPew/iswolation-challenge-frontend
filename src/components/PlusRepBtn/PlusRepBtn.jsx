@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BicepParticle } from 'components';
-import { SmokeParticleMotion } from 'animations';
 import { colors } from 'styles';
 
 function PlusRepBtn({ maxReps,  setReps, reps }) {
@@ -10,14 +9,14 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   const [ biceps, setBiceps ] = useState([]);
   const timer = useRef(false);
 
-  const generateBicep = () => (
-    <BicepParticle key={`particle_${new Date().getTime()}`} />
-  );
-
   const handleClick = () => {
     if (reps < maxReps) {
       let newBiceps = biceps;
-      newBiceps.push(generateBicep());
+      newBiceps.push(
+        <BicepParticle
+          key={`particle_${new Date().getTime()}`}
+        />
+      );
       setBiceps(newBiceps);
       
       clearTimeout(timer.current);

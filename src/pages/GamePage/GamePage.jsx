@@ -7,7 +7,7 @@ import { environment } from 'config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { colors } from 'styles';
-import { ArrowMotion, SlabSlamMotion } from 'animations';
+import { SlabSlamMotion } from 'animations';
 
 const { REACT_SERVER, WEB_SERVER } = environment;
 

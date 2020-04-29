@@ -4,7 +4,6 @@ import { animated as a, interpolate, useSpring } from 'react-spring';
 function BicepParticle() {
   const translationX = Math.random() * 75 + 15;
   const translationY = Math.random() * -150 - 50;
-
   const { opacity } = useSpring({
     from: { 
       opacity: 2,
@@ -26,7 +25,6 @@ function BicepParticle() {
     y: translationY,
     config: { tension: 25, friction: 15 }
   });
-
   const animationStyle = {
     opacity: opacity.interpolate((opacity) => `${opacity}`),
     transform: interpolate([x, y], (x, y) => `translate(${x}px, ${y}px)`)
