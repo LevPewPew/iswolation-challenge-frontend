@@ -11,11 +11,7 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   const timer = useRef(false);
 
   const generateBicep = () => (
-    <SmokeParticleMotion
-      key={`particle_${new Date().getTime()}`}
-    >
-      <BicepParticle />
-    </SmokeParticleMotion>
+    <BicepParticle key={`particle_${new Date().getTime()}`} />
   );
 
   const handleClick = () => {
