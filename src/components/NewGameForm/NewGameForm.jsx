@@ -104,6 +104,19 @@ function NewGameForm() {
     />
   ];
 
+  const xSpring = {
+    from: {
+      x: -2000
+    },
+    to: {
+      x: 0
+    },
+    config: {
+      tension: 1500,
+      friction: 60,
+      clamp: true
+    },
+  };
   const impactVibrationSpring = {
     from: {
       impactVibration: 0
@@ -129,19 +142,6 @@ function NewGameForm() {
       friction: 5,
     }
   };
-  const xSpring = {
-    from: {
-      x: -2000
-    },
-    to: {
-      x: 0
-    },
-    config: {
-      tension: 1500,
-      friction: 60,
-      clamp: true
-    },
-  };
 
   function GroupNameForm({ setCurrentSubForm }) {
     const { errors, handleSubmit, register } = useForm();
@@ -151,9 +151,13 @@ function NewGameForm() {
       setCurrentSubForm(1);
     };
 
+    const xRef = useRef();
     const impactVibrationRef = useRef();
     const settleVibrationRef = useRef();
-    const xRef = useRef();
+    const { x } = useSpring({
+      ref: xRef,
+      ...xSpring
+    });
     const { impactVibration } = useSpring({
         ref: impactVibrationRef,
         ...impactVibrationSpring
@@ -162,11 +166,10 @@ function NewGameForm() {
       ref: settleVibrationRef,
       ...settleVibrationSpring
     });
-    const { x } = useSpring({
-      ref: xRef,
-      ...xSpring
-    });
     useChain([xRef, impactVibrationRef, settleVibrationRef]);
+    const xStyle = {
+      transform: x.interpolate((x) => `translateX(${x}px)`)
+    };
     const impactVibrationStyle = {
       transform: impactVibration.interpolate((i) => `rotateZ(${i}deg)`),
       transformOrigin: "100% 50%"
@@ -174,9 +177,6 @@ function NewGameForm() {
     const settleVibrationStyle = {
       transform: settleVibration.interpolate((s) => `rotateZ(${s}deg)`),
       transformOrigin: "100% 50%"
-    };
-    const xStyle = {
-      transform: x.interpolate((x) => `translateX(${x}px)`)
     };
   
     return (
