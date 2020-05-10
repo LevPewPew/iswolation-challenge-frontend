@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   DecrementBtn,
@@ -32,6 +32,7 @@ const {
 function NewGameForm() {
   const [ currentSubForm, setCurrentSubForm ] = useState(0);
   const [ formData, setFormData ] = useState({});
+  const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/arrow-and-hit1.mp3");
 
   const validations = {
     groupName: {
@@ -115,7 +116,7 @@ function NewGameForm() {
       tension: 1500,
       friction: 60,
       clamp: true
-    },
+    }
   };
   const impactVibrationSpring = {
     from: {
@@ -150,6 +151,14 @@ function NewGameForm() {
       setFormData(newFormData);
       setCurrentSubForm(1);
     };
+
+    useEffect(() => {
+      if (audio.paused) {
+        audio.play();
+        console.log("in cond");
+      }
+      console.log("outside");
+    }, []);
 
     const xRef = useRef();
     const impactVibrationRef = useRef();
@@ -213,6 +222,14 @@ function NewGameForm() {
       setFormData(newFormData);
       setCurrentSubForm(2);
     };
+
+    useEffect(() => {
+      if (!audio.paused) {
+        audio.play();
+        console.log("in cond");
+      }
+      console.log("outside");
+    }, []);
 
     const impactVibrationRef = useRef();
     const settleVibrationRef = useRef();
@@ -312,6 +329,14 @@ function NewGameForm() {
       const res = await axios.post(`${WEB_SERVER}/games`, newFormData);
       history.push(`/${res.data._id}`);
     };
+
+    useEffect(() => {
+      if (audio.paused) {
+        audio.play();
+        console.log("in cond");
+      }
+      console.log("outside");
+    }, []);
 
     const impactVibrationRef = useRef();
     const settleVibrationRef = useRef();

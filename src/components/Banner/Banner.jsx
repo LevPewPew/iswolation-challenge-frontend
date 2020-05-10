@@ -9,7 +9,7 @@ function Banner({ isOnGamePage }) {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push('/');
+    history.push('/new');
   };
 
   return (

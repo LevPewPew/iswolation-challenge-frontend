@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { GamePage, MainPage } from 'pages';
+import { GamePage, HomePage, MainPage } from 'pages';
 import { Banner, Footer } from 'components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { animated as a, useChain, useSpring } from 'react-spring';
@@ -26,7 +26,6 @@ function App() {
       // friction: 50 , this could be ok as well...
     },
     onRest: () => {
-      console.log("called Fall");
       audio.play();
     }
   };
@@ -41,8 +40,7 @@ function App() {
       tension: 6400,
       friction: 5,
       clamp: true
-    },
-    onRest: () => {console.log("called Impact")}
+    }
   };
   const slabSettleSpring = {
     from: {
@@ -54,8 +52,7 @@ function App() {
     config: {
       tension: 6400,
       friction: 5
-    },
-    onRest: () => {console.log("called Settle")}
+    }
   };
   const slabFallRef = useRef();
   const slabImpactRef = useRef();
@@ -104,6 +101,11 @@ function App() {
             />
             <Switch>
               <Route exact path="/">
+                <HomePage
+                  setIsOnGamePage={setIsOnGamePage}
+                /> 
+              </Route>
+              <Route path="/new">
                 <MainPage
                   setIsOnGamePage={setIsOnGamePage}
                 /> 
