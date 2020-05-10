@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -6,12 +6,12 @@ import { GeneralBtn, PlayerRow } from 'components';
 import { environment } from 'config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { animated as a, useChain, useSpring } from 'react-spring';
+import { animated as a } from 'react-spring';
 import { colors } from 'styles';
 
 const { REACT_SERVER, WEB_SERVER } = environment;
 
-function GamePage({ setIsOnGamePage }) {
+function GamePage({ setIsOnGamePage, slabFallStyle }) {
   const [ data, setData ] = useState(null);
   const { id } = useParams();
   const gameAddress = `${REACT_SERVER}/${id}`;
@@ -34,77 +34,6 @@ function GamePage({ setIsOnGamePage }) {
     getData();
   }, [id, setIsOnGamePage]);
 
-  const slabFallSpring = {
-    from: {
-      z: 50
-    },
-    to: {
-      z: 1
-    },
-    config: {
-      tension: 210,
-      friction: 20,
-      mass: 50,
-      clamp: true
-    }
-  };
-  const slabImpactSpring = {
-    from: {
-      xImpact: 50
-    },
-    to: {
-      xImpact: 1
-    },
-    config: {
-      tension: 210,
-      friction: 20,
-      mass: 50,
-      clamp: true
-    }
-  };
-  const slabSettleSpring = {
-    from: {
-      xSettle: 50
-    },
-    to: {
-      xSettle: 1
-    },
-    config: {
-      tension: 210,
-      friction: 20,
-      mass: 50,
-      clamp: true
-    }
-  };
-  const slabFallRef = useRef();
-  const slabImpactRef = useRef();
-  const slabSettleRef = useRef();
-  const { z } = useSpring({
-      ref: slabFallRef,
-      ...slabFallSpring
-  });
-  const { xImpact } = useSpring({
-      ref: slabImpactRef,
-      ...slabImpactSpring
-  });
-  const { xSettle } = useSpring({
-      ref: slabSettleRef,
-      ...slabSettleSpring
-  });
-  useChain([slabFallRef, slabImpactRef, slabSettleRef]);
-  const slabFallStyle = {
-    transform: z.interpolate((z) => `scale(${z})`),
-    transformOrigin: "50% 50%"
-  };
-  const slabFallStyle = {
-    transform: z.interpolate((z) => `scale(${z})`),
-    transformOrigin: "50% 50%"
-  };
-  const slabFallStyle = {
-    transform: z.interpolate((z) => `scale(${z})`),
-    transformOrigin: "50% 50%"
-  };
-
   return (
     <main className="GamePage">
       {
@@ -121,7 +50,6 @@ function GamePage({ setIsOnGamePage }) {
               />
             </CopyToClipboard>
           </div>
-          // TODO LEFTOFF, put the extra two div wrappers here
           <a.div
             className="player-row-container"
             style={slabFallStyle}
