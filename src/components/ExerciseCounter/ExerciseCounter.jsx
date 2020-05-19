@@ -17,6 +17,7 @@ function ExerciseCounter({ exercise, exerciseIndex, playerIndex }) {
         reps={reps}
         setReps={setReps}
       />
+    {/* // TODO, pass the player and the exercise down to this level, and then use this to query the gameState collection to GET new completedReps */}
       <ProgressBar
         maxReps={exercise.reps}
         name={exercise.name}

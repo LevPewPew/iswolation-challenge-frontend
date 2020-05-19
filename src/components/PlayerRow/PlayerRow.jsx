@@ -12,7 +12,7 @@ const PlayerRow = ({ data, playerIndex, playerName }) => (
     <div className="exercise-counters">
       {
         data ?
-        data.exercises.map((exercise, i) => {
+        data.game.exercises.map((exercise, i) => {
           return (
             <ExerciseCounter
               key={i}

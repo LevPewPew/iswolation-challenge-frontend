@@ -19,12 +19,14 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
   const copyIcon = <FontAwesomeIcon icon={faCopy} color={colors.gainsvilleFurniture} />;
   
   useEffect(() => {
-    const gameDataAddress = `${WEB_SERVER}/games/${id}`
+    const gameDataAddress = `${WEB_SERVER}/games/${id}`;
+    const gameStateDataAddress = `${WEB_SERVER}/gameStates/${id}`;
 
     const getData = async () => {
       try {
-        const res = await axios.get(gameDataAddress);
-        setData(res.data);
+        const gameResponse = await axios.get(gameDataAddress);
+        const gameStateResponse = await axios.get(gameStateDataAddress);
+        setData({game: gameResponse.data, gameState: gameStateResponse.data});
       } catch (err) {
         console.log(err);
       }
@@ -39,7 +41,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
       {
         data ?
         <>
-          <h1>{data.groupName}</h1>
+          <h1>{data.game.groupName}</h1>
           <div className="label-btn-container">
             <label>Copy Challenge Link</label>
             <CopyToClipboard
@@ -55,7 +57,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
             style={slabFallStyle}
           >
             {
-              data.players.map((player, i) => {
+              data.game.players.map((player, i) => {
                 return (
                   <PlayerRow
                     data={data}

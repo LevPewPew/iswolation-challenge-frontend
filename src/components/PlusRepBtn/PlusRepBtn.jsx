@@ -10,6 +10,7 @@ function PlusRepBtn({ maxReps,  setReps, reps }) {
   const timer = useRef(false);
 
   const handleClick = () => {
+    // TODO, pass the player and the exercise down to this level, and then use this to query the gameState collection to POST new completedReps
     if (reps < maxReps) {
       let newBiceps = biceps;
       newBiceps.push(

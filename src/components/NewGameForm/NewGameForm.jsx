@@ -147,7 +147,7 @@ function NewGameForm() {
   function GroupNameForm({ setCurrentSubForm }) {
     const { errors, handleSubmit, register } = useForm();
     const onSubmit = (data) => {
-      const newFormData = { ...formData, ...data };
+      const newFormData = { ...formData, ...data }; // TODO can probably remove the ...formData
       setFormData(newFormData);
       setCurrentSubForm(1);
     };
@@ -155,9 +155,7 @@ function NewGameForm() {
     useEffect(() => {
       if (audio.paused) {
         audio.play();
-        console.log("in cond");
       }
-      console.log("outside");
     }, []);
 
     const xRef = useRef();
@@ -226,9 +224,7 @@ function NewGameForm() {
     useEffect(() => {
       if (!audio.paused) {
         audio.play();
-        console.log("in cond");
       }
-      console.log("outside");
     }, []);
 
     const impactVibrationRef = useRef();
@@ -325,17 +321,15 @@ function NewGameForm() {
         exercises
       };
 
-      setFormData(newFormData);
-      const res = await axios.post(`${WEB_SERVER}/games`, newFormData);
+      setFormData(newFormData); // TODO probably can delete this in last sub form
+      const res = await axios.post(`${WEB_SERVER}/games`, newFormData); // TODO do i need a try catch here? i think maybe react hook form is handing this somehow but not sure
       history.push(`/${res.data._id}`);
     };
 
     useEffect(() => {
       if (audio.paused) {
         audio.play();
-        console.log("in cond");
       }
-      console.log("outside");
     }, []);
 
     const impactVibrationRef = useRef();
