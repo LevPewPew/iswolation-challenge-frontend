@@ -4,7 +4,7 @@ import {
   PlayerCard,
 } from 'components';
 
-const PlayerRow = ({ data, playerIndex, playerName }) => (
+const PlayerRow = ({ data, id, playerName }) => (
   <article className="PlayerRow">
     <PlayerCard
       name={playerName}
@@ -16,9 +16,9 @@ const PlayerRow = ({ data, playerIndex, playerName }) => (
           return (
             <ExerciseCounter
               key={i}
-              exerciseIndex={i}
               exercise={exercise}
-              playerIndex={playerIndex}
+              id={id}
+              name={playerName}
             />
           );
         }) :

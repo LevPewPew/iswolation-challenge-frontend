@@ -321,9 +321,12 @@ function NewGameForm() {
         exercises
       };
 
-      setFormData(newFormData); // TODO probably can delete this in last sub form
-      const res = await axios.post(`${WEB_SERVER}/games`, newFormData); // TODO do i need a try catch here? i think maybe react hook form is handing this somehow but not sure
-      history.push(`/${res.data._id}`);
+      try {
+        const res = await axios.post(`${WEB_SERVER}/games`, newFormData);
+        history.push(`/${res.data._id}`);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     useEffect(() => {

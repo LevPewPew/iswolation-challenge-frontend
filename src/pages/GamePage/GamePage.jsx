@@ -10,7 +10,7 @@ import { animated as a } from 'react-spring';
 import { colors } from 'styles';
 
 const { REACT_SERVER, WEB_SERVER } = environment;
-
+// TODO do an every 10-60 seconds or so ping to DB to update with other ppl score
 function GamePage({ setIsOnGamePage, slabFallStyle }) {
   const [ data, setData ] = useState(null);
   const { id } = useParams();
@@ -20,7 +20,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
   
   useEffect(() => {
     const gameDataAddress = `${WEB_SERVER}/games/${id}`;
-    const gameStateDataAddress = `${WEB_SERVER}/gameStates/${id}`;
+    const gameStateDataAddress = `${WEB_SERVER}/gamestates/${id}`;
 
     const getData = async () => {
       try {
@@ -61,8 +61,8 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
                 return (
                   <PlayerRow
                     data={data}
+                    id={id}
                     key={i}
-                    playerIndex={i}
                     playerName={player}
                   />
                 );

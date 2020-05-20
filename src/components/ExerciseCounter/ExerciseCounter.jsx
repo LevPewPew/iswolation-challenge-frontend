@@ -5,15 +5,16 @@ import {
   ProgressCount,
 } from 'components';
 
-function ExerciseCounter({ exercise, exerciseIndex, playerIndex }) {
+function ExerciseCounter({ exercise, id, name }) {
   const [ reps, setReps ] = useState(0);
   
   return (
     <div className="ExerciseCounter">
       <PlusRepBtn
-        exerciseIndex={exerciseIndex}
+        exercise={exercise.name}
+        id={id}
         maxReps={exercise.reps}
-        playerIndex={playerIndex}
+        player={name}
         reps={reps}
         setReps={setReps}
       />
