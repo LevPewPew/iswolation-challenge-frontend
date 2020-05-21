@@ -20,13 +20,13 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
   
   useEffect(() => {
     const gameDataAddress = `${WEB_SERVER}/games/${id}`;
-    const gameStateDataAddress = `${WEB_SERVER}/gamestates/${id}`;
+    const gamestateDataAddress = `${WEB_SERVER}/gamestates/${id}`;
 
     const getData = async () => {
       try {
         const gameResponse = await axios.get(gameDataAddress);
-        const gameStateResponse = await axios.get(gameStateDataAddress);
-        setData({game: gameResponse.data, gameState: gameStateResponse.data});
+        const gamestateResponse = await axios.get(gamestateDataAddress);
+        setData({game: gameResponse.data, gamestate: gamestateResponse.data});
       } catch (err) {
         console.log(err);
       }
@@ -60,6 +60,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
               data.game.players.map((player, i) => {
                 return (
                   <PlayerRow
+                    gamestate={data.gamestate}
                     data={data}
                     id={id}
                     key={i}

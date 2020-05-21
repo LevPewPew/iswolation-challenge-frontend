@@ -4,7 +4,7 @@ import {
   PlayerCard,
 } from 'components';
 
-const PlayerRow = ({ data, id, playerName }) => (
+const PlayerRow = ({ data, gamestate, id, playerName }) => (
   <article className="PlayerRow">
     <PlayerCard
       name={playerName}
@@ -15,9 +15,10 @@ const PlayerRow = ({ data, id, playerName }) => (
         data.game.exercises.map((exercise, i) => {
           return (
             <ExerciseCounter
-              key={i}
               exercise={exercise}
+              gamestate={gamestate}
               id={id}
+              key={i}
               name={playerName}
             />
           );

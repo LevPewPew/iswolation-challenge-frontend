@@ -4,13 +4,7 @@ function ProgressBar({ maxReps, name, reps }) {
   const [ percentProgress, setPercentProgress ] = useState(0);
   
   useEffect(() => {
-    const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
-    
     setPercentProgress((reps / maxReps) * 100);
-
-    if (reps === maxReps) {
-      audio.play();
-    }
   }, [maxReps, reps]);
 
   return (

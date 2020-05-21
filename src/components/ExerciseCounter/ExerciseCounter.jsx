@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   PlusRepBtn,
   ProgressBar,
   ProgressCount,
 } from 'components';
 
-function ExerciseCounter({ exercise, id, name }) {
+function ExerciseCounter({ exercise, gamestate, id, name }) {
   const [ reps, setReps ] = useState(0);
-  
+
+  // TODO LEFTOFF, for some reason some times the DB not updating? hmm put logs everywhere etc
+
+  // TODO FIXME  i think there will be race conditions and over writes when try to send new reps and recieve cron job reps at around the same time
+
+  const getCompletedReps = (player, exercise) => {
+    const playerIndex = gamestate.players.findIndex((e) => e.name === player);
+    const exerciseIndex = gamestate.players[playerIndex].exercises.findIndex((e) => e.name === exercise);
+    const completedReps = gamestate.players[playerIndex].exercises[exerciseIndex].completedReps;
+
+    return completedReps;
+  };
+
+  useEffect(() => {
+    setReps(getCompletedReps(name, exercise.name));
+  }, [gamestate]);
+
   return (
     <div className="ExerciseCounter">
       <PlusRepBtn

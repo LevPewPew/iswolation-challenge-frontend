@@ -9,13 +9,18 @@ import { colors } from 'styles';
 const { WEB_SERVER } = environment;
 
 function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
-  const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot1.wav");
   const [ biceps, setBiceps ] = useState([]);
   const bicepTimer = useRef(false);
   const scoreUpdateTimer = useRef(false);
   const firstUpdate = useRef(true);
 
   const handleClick = async () => {
+    let audio;
+    if (reps === maxReps - 1) {
+      audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
+    } else {
+      audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot1.wav");
+    }
     if (reps < maxReps) {
       const newBiceps = biceps;
       newBiceps.push(
@@ -28,6 +33,7 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
       bicepTimer.current = setTimeout(() => setBiceps([]), 5000);
 
       setReps(reps + 1);
+      audio.play();
     }
   };
 
@@ -35,10 +41,6 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
     if (firstUpdate.current) {
       firstUpdate.current = false;
     } else {
-      if (reps < maxReps) {
-        audio.play();
-      }
-  
       clearTimeout(scoreUpdateTimer.current);
       scoreUpdateTimer.current = setTimeout(async () => {
         const newGains = {
@@ -56,7 +58,7 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
   }, [reps]);
 
   return (
-    <button className={`PlusRepBtn`} onClick={handleClick}>
+    <button className={`PlusRepBtn`} onClick={handleClick} disabled={reps === maxReps}>
       <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift} />
       {biceps.map((bicep) => bicep)}
     </button>
