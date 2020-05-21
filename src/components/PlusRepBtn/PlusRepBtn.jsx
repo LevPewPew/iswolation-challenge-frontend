@@ -12,16 +12,16 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
   const [ biceps, setBiceps ] = useState([]);
   const bicepTimer = useRef(false);
   const scoreUpdateTimer = useRef(false);
-  const firstUpdate = useRef(true);
 
   const handleClick = async () => {
-    let audio;
-    if (reps === maxReps - 1) {
-      audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
-    } else {
-      audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot1.wav");
-    }
-    if (reps < maxReps) {
+    const newReps = reps + 1;
+    if (newReps <= maxReps) {
+      let audio;
+      if (newReps === maxReps) {
+        audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot3.ogg");
+      } else {
+        audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/gunshot1.wav");
+      }
       const newBiceps = biceps;
       newBiceps.push(
         <BicepParticle
@@ -32,22 +32,17 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
       clearTimeout(bicepTimer.current);
       bicepTimer.current = setTimeout(() => setBiceps([]), 5000);
 
-      setReps(reps + 1);
+      setReps(newReps);
       audio.play();
-    }
-  };
 
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-    } else {
       clearTimeout(scoreUpdateTimer.current);
       scoreUpdateTimer.current = setTimeout(async () => {
         const newGains = {
           player,
           exercise,
-          completedReps: reps
+          completedReps: newReps
         };
+
         try {
           await axios.put(`${WEB_SERVER}/gamestates/${id}/add-gains`, newGains);
         } catch (err) {
@@ -55,10 +50,10 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
         }
       }, 2000);
     }
-  }, [reps]);
+  };
 
   return (
-    <button className={`PlusRepBtn`} onClick={handleClick} disabled={reps === maxReps}>
+    <button className="PlusRepBtn" onClick={handleClick} disabled={reps === maxReps}>
       <FontAwesomeIcon icon={faPlus} color={colors.doYouEvenLift} />
       {biceps.map((bicep) => bicep)}
     </button>
