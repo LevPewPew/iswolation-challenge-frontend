@@ -4,7 +4,7 @@ import {
   PlayerCard,
 } from 'components';
 
-const PlayerRow = ({ data, gamestate, id, playerName }) => (
+const PlayerRow = ({ data, gamestate, id, playerName, setIsSavingScores }) => (
   <article className="PlayerRow">
     <PlayerCard
       name={playerName}
@@ -20,6 +20,7 @@ const PlayerRow = ({ data, gamestate, id, playerName }) => (
               id={id}
               key={i}
               name={playerName}
+              setIsSavingScores={setIsSavingScores}
             />
           );
         }) :

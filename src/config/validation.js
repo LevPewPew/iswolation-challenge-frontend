@@ -11,4 +11,4 @@ export const validation = {
   MAX_EXERCISES_LENGTH: 10,  // 10, UX design decision
   MIN_REPS_COUNT: 1, // less than 1 rep is pointless
   MAX_REPS_COUNT: 999 // 999 chosen to make frontend display logic easier, and also to prevent people from killing themselves reaching crazy reps
-}
+};

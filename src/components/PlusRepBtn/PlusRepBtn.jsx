@@ -1,17 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { environment } from 'config';
+import { environment, timing } from 'config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BicepParticle } from 'components';
 import { colors } from 'styles';
 
 const { WEB_SERVER } = environment;
+const { BICEP_CLEAR } = timing;
 
-function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
+function PlusRepBtn({ id, exercise, maxReps, player, setIsSavingScores, setReps, reps }) {
   const [ biceps, setBiceps ] = useState([]);
   const bicepTimer = useRef(false);
-  const scoreUpdateTimer = useRef(false);
 
   const handleClick = async () => {
     const newReps = reps + 1;
@@ -30,25 +30,23 @@ function PlusRepBtn({ id, exercise, maxReps, player, setReps, reps }) {
       );
       setBiceps(newBiceps);
       clearTimeout(bicepTimer.current);
-      bicepTimer.current = setTimeout(() => setBiceps([]), 5000);
+      bicepTimer.current = setTimeout(() => setBiceps([]), BICEP_CLEAR);
 
       setReps(newReps);
       audio.play();
 
-      clearTimeout(scoreUpdateTimer.current);
-      scoreUpdateTimer.current = setTimeout(async () => {
-        const newGains = {
-          player,
-          exercise,
-          completedReps: newReps
-        };
-
-        try {
-          await axios.put(`${WEB_SERVER}/gamestates/${id}/add-gains`, newGains);
-        } catch (err) {
-          console.log(err);
-        }
-      }, 2000);
+      const newGains = {
+        player,
+        exercise,
+        completedReps: newReps
+      };
+      try {
+        await axios.put(`${WEB_SERVER}/gamestates/${id}/add-gains`, newGains);
+        setIsSavingScores(Date.now());
+      } catch (err) {
+        setIsSavingScores(-1);
+        console.log(err);
+      }
     }
   };
 

@@ -1,0 +1,5 @@
+export const timing = {
+  BICEP_CLEAR: 5000,
+  STATS_AUTO_SAVE: 2000,
+  SERVER_DATA_SYNC: 60000
+};

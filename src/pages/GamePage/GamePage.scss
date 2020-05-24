@@ -12,6 +12,18 @@
     justify-content: right;
     align-items: center;
 
+    .saving-stats {
+      opacity: 0.8;
+      font-style: italic;
+      font-weight: lighter;
+    }
+
+    .stats-are-saved {
+      opacity: 0.4;
+      font-style: italic;
+      font-weight: lighter;
+    }
+
     label {
       margin-right: 20px;
       flex-grow: 1;

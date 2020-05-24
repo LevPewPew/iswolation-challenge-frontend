@@ -5,7 +5,7 @@ import {
   ProgressCount,
 } from 'components';
 
-function ExerciseCounter({ exercise, gamestate, id, name }) {
+function ExerciseCounter({ exercise, gamestate, id, name, setIsSavingScores }) {
   const [ reps, setReps ] = useState(0);
 
   // TODO FIXME  i think there will be race conditions and over writes when try to send new reps and recieve cron job reps at around the same time
@@ -30,6 +30,7 @@ function ExerciseCounter({ exercise, gamestate, id, name }) {
         maxReps={exercise.reps}
         player={name}
         reps={reps}
+        setIsSavingScores={setIsSavingScores}
         setReps={setReps}
       />
     {/* // TODO, pass the player and the exercise down to this level, and then use this to query the gameState collection to GET new completedReps */}

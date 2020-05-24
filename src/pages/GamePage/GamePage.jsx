@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { GeneralBtn, PlayerRow } from 'components';
-import { environment } from 'config';
+import { environment, timing } from 'config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { animated as a } from 'react-spring';
 import { colors } from 'styles';
 
 const { REACT_SERVER, WEB_SERVER } = environment;
-// TODO do an every 10-60 seconds or so ping to DB to update with other ppl score
+const { SERVER_DATA_SYNC, STATS_AUTO_SAVE } = timing;
+
 function GamePage({ setIsOnGamePage, slabFallStyle }) {
   const [ data, setData ] = useState(null);
+  const [ isSavingScores, setIsSavingScores ] = useState(false);
   const { id } = useParams();
+  const scoreSavingTimer = useRef(false);
   const gameAddress = `${REACT_SERVER}/${id}`;
   
   const copyIcon = <FontAwesomeIcon icon={faCopy} color={colors.gainsvilleFurniture} />;
@@ -23,18 +26,30 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
     const gamestateDataAddress = `${WEB_SERVER}/gamestates/${id}`;
 
     const getData = async () => {
-      try {
-        const gameResponse = await axios.get(gameDataAddress);
-        const gamestateResponse = await axios.get(gamestateDataAddress);
-        setData({game: gameResponse.data, gamestate: gamestateResponse.data});
-      } catch (err) {
-        console.log(err);
+      if (!isSavingScores) {
+        try {
+          const gameResponse = await axios.get(gameDataAddress);
+          const gamestateResponse = await axios.get(gamestateDataAddress);
+          setData({game: gameResponse.data, gamestate: gamestateResponse.data});
+        } catch (err) {
+          console.log(err);
+        }
       }
     };
     
     setIsOnGamePage(true);
     getData();
-  }, [id, setIsOnGamePage]);
+    setInterval(() => getData(), SERVER_DATA_SYNC);
+  }, []);
+
+  useEffect(() => {
+    if (isSavingScores) {
+      clearTimeout(scoreSavingTimer.current);
+      scoreSavingTimer.current = setTimeout(() => {
+        setIsSavingScores(false);
+      }, STATS_AUTO_SAVE);
+    }
+  }, [isSavingScores]);
 
   return (
     <main className="GamePage">
@@ -43,6 +58,11 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
         <>
           <h1>{data.game.groupName}</h1>
           <div className="label-btn-container">
+            {
+              isSavingScores ?
+              <span className="saving-stats">{isSavingScores === -1 ? "Stats save failed" : "Saving stats ..."}</span> :
+              <span className="stats-are-saved">Stats are saved!</span>
+            }
             <label>Copy Challenge Link</label>
             <CopyToClipboard
               text={gameAddress}
@@ -65,6 +85,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
                     id={id}
                     key={i}
                     playerName={player}
+                    setIsSavingScores={setIsSavingScores}
                   />
                 );
               })
