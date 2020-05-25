@@ -29,7 +29,10 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
       if (!isSavingScores) {
         try {
           const gameResponse = await axios.get(gameDataAddress);
-          const gamestateResponse = await axios.get(gamestateDataAddress);
+          const gamestateResponse = await axios.get(
+            gamestateDataAddress,
+            {headers: {localMidnight: new Date().setHours(24, 0, 0, 0)}}
+          );
           setData({game: gameResponse.data, gamestate: gamestateResponse.data});
         } catch (err) {
           console.log(err);
