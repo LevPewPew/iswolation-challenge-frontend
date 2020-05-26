@@ -5,7 +5,7 @@ function ProgressBar({ maxReps, name, reps }) {
   
   useEffect(() => {
     setPercentProgress((reps / maxReps) * 100);
-  }, [maxReps, reps]);
+  }, [reps]);
 
   return (
     // &nbsp; are used to avoid fiddling around with padding creating some of the progress bar already "loaded"

@@ -7,7 +7,7 @@ function HomePage({ setIsOnGamePage }) {
 
   useEffect(() => {
     setIsOnGamePage(false);
-  }, [setIsOnGamePage]);
+  }, []);
 
   const handleClick = () => {
     history.push('/new');
