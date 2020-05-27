@@ -195,6 +195,7 @@ function NewGameForm() {
             style={settleVibrationStyle}
           >
             <TextInput
+              autoFocus={true}
               name="groupName"
               register={register(validations.groupName)}
               maxLength={MAX_GROUP_NAME_CHARS}
@@ -280,6 +281,7 @@ function NewGameForm() {
               [...Array(totalPlayers).keys()].map((i) => (
                 <Fragment key={i}>
                   <TextInput
+                    autoFocus={true}
                     name={`player${i + 1}`}
                     register={register(validations.player)}
                     maxLength={MAX_PLAYERS_CHARS}
@@ -390,6 +392,7 @@ function NewGameForm() {
                   <div className="exercise-reps-container">
                     <div className="input-error-container">
                       <TextInput
+                        autoFocus={true}
                         name={`exercise${i + 1}`}
                         register={register(validations.exercise)}
                         maxLength={MAX_EXERCISE_NAME_CHARS}
