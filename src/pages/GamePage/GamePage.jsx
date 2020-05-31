@@ -59,7 +59,7 @@ function GamePage({ setIsOnGamePage, slabFallStyle }) {
       {
         data ?
         <>
-          <h1>{data.game.groupName}</h1>
+          <h2>{data.game.groupName}</h2>
           <div className="label-btn-container">
             {
               isSavingScores ?

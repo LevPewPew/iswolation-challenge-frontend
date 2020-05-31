@@ -7,3 +7,8 @@ body,
   height: 100vh;
   background-color: $swolePatrol;
 }
+
+html {
+  // the root font-size
+  font-size: calc(12px + 1vw);
+};

@@ -1,31 +1,23 @@
 .Banner {
   padding: 40px;
   background-color: $swolePatrol;
-  font-size: 16px;
-
-  @include bp(mobile) {
-    padding: 30px;
-    font-size: 15px;
-  }
-
-  @include bp(smallMobile) {
-    padding: 20px;
-    font-size: 14px;
-  }
-
-  h1 {
-    margin: 20px 0;
-  }
 
   .h1-button-container {
     display: flex;
+    align-items: center;
 
     h1 {
+      margin: 20px 0;
       flex-grow: 1;
     }
 
     .GeneralBtn {
       margin: 20px 0;
     }
+  }
+
+  p {
+    width: 35em;
+    margin: 40px auto;
   }
 }

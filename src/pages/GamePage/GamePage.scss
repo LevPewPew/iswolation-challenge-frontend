@@ -1,5 +1,5 @@
 .GamePage {
-  h1 {
+  h2 {
     text-align: center;
   }
   
@@ -13,32 +13,46 @@
     align-items: center;
 
     .saving-stats {
+      margin-left: 0.4rem;
       opacity: 0.8;
+      font-size: $tiny;
       font-style: italic;
       font-weight: lighter;
     }
 
     .stats-are-saved {
+      margin-left: 0.4rem;
       opacity: 0.4;
+      font-size: $tiny;
       font-style: italic;
       font-weight: lighter;
     }
 
     label {
-      margin-right: 20px;
+      margin-right: 0.25rem;
       flex-grow: 1;
       text-align: right;
+      font-size: $tiny;
+      font-weight: lighter;
     }
 
     .GeneralBtn {
       height: 44px;
-      padding: 2px 16px;
+      padding: 5px 10px;
       display: flex;
       justify-content: center;
       align-items: center;
-  
+      background-color: rgba($color: #000000, $alpha: 0);
+
+      &:active:enabled {
+        .fa-copy {
+          color: $gainsvilleFurnitureDark;
+        }
+      }
+
       .fa-copy {
-        font-size: 24px;
+        text-align: center;
+        font-size: $small;
       }
     }
   }

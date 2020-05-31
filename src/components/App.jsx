@@ -9,7 +9,6 @@ function App() {
   const [ isOnGamePage, setIsOnGamePage ] = useState(false);
   const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/heavy-smash-2.wav");
 
-  // TODO so the reason it doesn't all animatte when coming from the fomr rather than a refresh is because this is at the app level, so it is playing "in the background" already and is done by time u get to the game page
   const slabFallSpring = {
     from: {
       z: 50
@@ -22,8 +21,6 @@ function App() {
       friction: 20,
       mass: 1,
       clamp: true
-      // friction: 20 < main
-      // friction: 50 , this could be ok as well...
     },
     onRest: () => {
       audio.play();
@@ -69,7 +66,7 @@ function App() {
       ref: slabSettleRef,
       ...slabSettleSpring
   });
-  // have to use this current syntax to get it to work, i don't really understand why. see https://github.com/react-spring/react-spring/issues/574
+  // have to use this "current" syntax to get it to work, i don't really understand why. see https://github.com/react-spring/react-spring/issues/574
   useChain([
     {current: slabFallRef.current},
     {current: slabImpactRef.current},

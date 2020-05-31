@@ -15,7 +15,7 @@ function Banner({ isOnGamePage }) {
   return (
     <header className="Banner">
       <div className="h1-button-container">
-        <h1 className="h1-plus">Iswolation Challenge</h1>
+        <h1>Iswolation Challenge</h1>
         {
           isOnGamePage ?
           <GeneralBtn 

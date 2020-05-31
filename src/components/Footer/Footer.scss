@@ -4,16 +4,6 @@
   justify-content: center;
   align-items: center;
 
-  @include bp(mobile) {
-    padding: 30px;
-    font-size: 15px;
-  }
-
-  @include bp(smallMobile) {
-    padding: 20px;
-    font-size: 14px;
-  }
-
   p {
     margin-bottom: 0;
   }

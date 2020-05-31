@@ -6,7 +6,7 @@
   } @else if $point == mobile {
     @media (max-width: 520px) { @content; }
   } @else if $point == smallMobile {
-    @media (max-width: 374px) { @content; }
+    @media (max-width: 375px) { @content; }
   }
 }
 
@@ -20,10 +20,6 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-
-  @include bp(smallScreen) {
-    width: 93%;
-  }
 
   // categories
   @import '../styles/buttons';

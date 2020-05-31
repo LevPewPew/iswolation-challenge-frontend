@@ -9,12 +9,12 @@ h6 {
   color: $gainsvilleFurniture;
 }
 
-.h1-plus {
-  font-size: 48px;
+h1 {
+  font-size: $monster;
+}
 
-  @include bp(smallMobile) {
-    font-size: 36px;
-  }
+h2 {
+  font-size: $xxxLarge;
 }
 
 p,
@@ -23,6 +23,7 @@ li,
 span {
   margin: 0;
   font-family: $general;
+  font-size: $xxSmall;
   color: $gainsvilleFurniture;
 }
 
