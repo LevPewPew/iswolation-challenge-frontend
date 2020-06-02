@@ -1,23 +1,46 @@
 .Banner {
-  padding: 40px;
+  padding: 1.8rem;
   background-color: $swolePatrol;
 
+  @include bp(mobile) {
+    padding: 1.0rem;
+  }
+
   .h1-button-container {
+    margin-bottom: 2.5rem;
     display: flex;
     align-items: center;
 
+    @include bp(tablet) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
     h1 {
-      margin: 20px 0;
+      margin-bottom: 1rem;
       flex-grow: 1;
+
+      @include bp(tablet) {
+        text-align: center;
+      }
     }
 
     .GeneralBtn {
-      margin: 20px 0;
+      margin: 0.5rem 0;
     }
   }
 
   p {
     width: 35em;
-    margin: 40px auto;
+    margin: 0 auto;
+    margin-top: 1rem;
+
+    @include bp(tablet) {
+      width: 30em;
+    }
+
+    @include bp(smallMobile) {
+      width: 25em;
+    }
   }
 }

@@ -1,10 +1,12 @@
 .SubmitBtn {
-  height: 66px;
+  padding: 0.5rem 1.1rem;
   border: 0;
   border-radius: 5px;
   background-color: $gainsvilleFurnitureDark;
 
-  h1 {
+  span {
+    font-family: $headings;
+    font-size: $medium;
     color: $gainsvilleFurniture;
   }
 }

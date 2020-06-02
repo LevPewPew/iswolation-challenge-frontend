@@ -1,13 +1,25 @@
 .PlayerCard {
-  width: 150px;
+  width: 6.25rem;
   background: rgba(0, 0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: $general;
 
-  h2 {
+  @include bp(mobile) {
+    width: 5.75rem;
+  }
+
+  @include bp(smallMobile) {
+    width: 5rem;
+  }
+
+  h3 {
     text-align: center;
     color: $gainsvilleFurnitureDark;
+
+    @include bp(mobile) {
+      transform: rotateZ(-45deg);
+    }
   }
 }

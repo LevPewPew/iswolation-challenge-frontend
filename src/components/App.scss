@@ -1,6 +1,6 @@
 @mixin bp($point) {
   @if $point == smallScreen {
-    @media (max-width: 1125px) { @content; }
+    @media (max-width: 1200px) { @content; }
   } @else if $point == tablet {
     @media (max-width: 768px) { @content; }
   } @else if $point == mobile {
@@ -20,6 +20,10 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+
+  @include bp(smallScreen) {
+    width: 94vw;
+  }
 
   // categories
   @import '../styles/buttons';
@@ -54,7 +58,11 @@
 
   // misc globals
   [class*="Page"] {
-    padding: 40px;
+    padding: 1.8rem;
     flex-grow: 2;
+
+    @include bp(mobile) {
+      padding: 1.0rem;
+    }
   }
 }

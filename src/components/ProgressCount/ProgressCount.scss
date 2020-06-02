@@ -1,9 +1,15 @@
 .ProgressCount {
-  padding: 10px;
+  z-index: 1;
+  padding: 0.417rem;
   border-radius: 0 5px 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background: $brickPoopHouse;
   font-family: $general;
+
+  span {
+    text-align: center;
+    width: 3.2rem;
+  }
 }

@@ -1,3 +1,15 @@
+@mixin bp($point) {
+  @if $point == smallScreen {
+    @media (max-width: 1200px) { @content; }
+  } @else if $point == tablet {
+    @media (max-width: 768px) { @content; }
+  } @else if $point == mobile {
+    @media (max-width: 520px) { @content; }
+  } @else if $point == smallMobile {
+    @media (max-width: 375px) { @content; }
+  }
+}
+
 @import './styles/colors';
 
 html,
@@ -9,6 +21,9 @@ body,
 }
 
 html {
-  // the root font-size
-  font-size: calc(12px + 1vw);
+  font-size: 24px;
+
+  @include bp(smallScreen) {
+    font-size: calc(12px + 1vw);
+  }
 };

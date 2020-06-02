@@ -4,7 +4,7 @@
   }
   
   .PlayerRow {
-    margin: 20px 0;
+    margin: 0.833rem 0;
   }
 
   .label-btn-container {
@@ -37,14 +37,17 @@
     }
 
     .GeneralBtn {
-      height: 44px;
-      padding: 5px 10px;
+      padding: 0.2rem 0.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: rgba($color: #000000, $alpha: 0);
 
       &:active:enabled {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
         .fa-copy {
           color: $gainsvilleFurnitureDark;
         }
