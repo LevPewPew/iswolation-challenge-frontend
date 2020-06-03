@@ -147,7 +147,7 @@ function NewGameForm() {
   function GroupNameForm({ setCurrentSubForm }) {
     const { errors, handleSubmit, register } = useForm();
     const onSubmit = (data) => {
-      const newFormData = { ...formData, ...data }; // TODO can probably remove the ...formData
+      const newFormData = { ...data };
       setFormData(newFormData);
       setCurrentSubForm(1);
     };

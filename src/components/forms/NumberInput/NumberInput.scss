@@ -1,9 +1,16 @@
 .NumberInput {
-  height: 33px;
-  padding: 0 12px;
-  border-radius: 5px;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  padding-top: 0.1rem;
+  border-radius: 0.2rem;
   background-color: $gainsvilleFurnitureLight;
   color: $swolePatrolDark;
+
+  @include bp(tablet) {
+    height: 2rem;
+    padding: 0 0.5rem;
+    padding-bottom: 0.1rem;
+  }
   
   &::placeholder {
     color: $gainsvilleFurniture;

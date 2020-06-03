@@ -16,7 +16,7 @@ function ProgressBar({ maxReps, name, reps }) {
           width: `${percentProgress}%`,
         }}
       >
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;{name}</p>
+        <p>&nbsp;&nbsp;&nbsp;{name}</p>
       </div>
     </div>
   );
