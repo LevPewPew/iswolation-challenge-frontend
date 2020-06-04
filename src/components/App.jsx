@@ -10,6 +10,7 @@ function App() {
   const audio = new Audio("https://lev-webdev-assets-123098.s3-ap-southeast-2.amazonaws.com/heavy-smash-2.wav");
 
   const slabFallSpring = {
+    delay: 2500,
     from: {
       z: 50
     },
@@ -17,7 +18,7 @@ function App() {
       z: 1
     },
     config: {
-      tension: 210,
+      tension: 170,
       friction: 20,
       mass: 1,
       clamp: true
