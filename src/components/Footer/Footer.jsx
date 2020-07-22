@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => (
   <footer className="Footer">
-    <p><a href="https://www.levtoth.dev">By Lev</a> | <a href="https://twitter.com/LevPewPew">Twitter</a> | <a href="https://github.com/LevPewPew">GitHub</a></p>
+    <p><a>By Lev</a> | <a href="https://www.linkedin.com/in/levente-toth-42009b187/">LinkedIn</a> | <a href="https://github.com/LevPewPew">GitHub</a></p>
   </footer>
 );
 
